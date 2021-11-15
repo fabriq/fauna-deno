@@ -1417,7 +1417,7 @@
 
   // package.json
   var name = '@yacinehmito/faunadb'
-  var version = '5.0.0-deno-alpha1'
+  var version = '5.0.0-deno-alpha2'
   var apiVersion = '4'
   var description = 'FaunaDB Javascript driver for Node.JS and Browsers'
   var homepage = 'https://fauna.com'
