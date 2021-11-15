@@ -1,3 +1,5 @@
+import * as query from './src/types/query'
+
 export {
   default as Client,
   ClientConfig,
@@ -11,3 +13,5 @@ export { default as RequestResult } from './src/types/RequestResult'
 export type { LambdaType as Lambda, ExprVal } from './src/types/query'
 export * from './src/types/errors'
 export * from './src/types/values'
+
+export { query }
