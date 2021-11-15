@@ -1417,7 +1417,7 @@
 
   // package.json
   var name = '@yacinehmito/faunadb'
-  var version = '5.0.0-1'
+  var version = '5.0.0-deno-alpha1'
   var apiVersion = '4'
   var description = 'FaunaDB Javascript driver for Node.JS and Browsers'
   var homepage = 'https://fauna.com'
@@ -1469,12 +1469,12 @@
     'bundle:analyze': 'webpack --env analyze',
     'bundle:stats': 'webpack --env analyze --env stats',
     'bundle:diff': 'node tools/bundleDiff.js',
-    'build:clean': 'shx rm -rf ./dist ./cjs ./esm5 ./query',
+    'build:clean': 'shx rm -rf ./dist ./cjs ./esm5 ./query ./mod.js ./mod.d.ts',
     'build:browser': 'webpack',
     'build:cjs': 'cross-env BABEL_ENV=cjs npx babel src -d ./cjs',
     'build:esm5': 'cross-env BABEL_ENV=esm npx babel src -d ./esm5',
     'build:package':
-      'npm-run-all build:clean build:browser build:cjs build:esm5',
+      'npm-run-all build:clean build:browser build:cjs build:esm5 build:deno',
     'build:deno':
       'esbuild --bundle src/index.js --outfile=mod.js --target=esnext && api-extractor run',
     'postbuild:package': 'node tools/postBuildPackage.js',
