@@ -1,11 +1,14 @@
 import RequestResult from './RequestResult'
 
+/** @public */
 export type FaunaHttpErrorResponseContent = {
   errors: {
-    code: string,
+    code: string
     description: string
   }[]
 }
+
+/** @public */
 export module errors {
   export class FaunaError extends Error {
     constructor(message: string)
@@ -18,9 +21,14 @@ export module errors {
   export class InvalidValue extends FaunaError {}
   export class ClientClosed extends FaunaError {}
   export class FaunaHTTPError extends FaunaError {
-    static raiseForStatusCode(requestResult: RequestResult<FaunaHttpErrorResponseContent>): void
+    static raiseForStatusCode(
+      requestResult: RequestResult<FaunaHttpErrorResponseContent>
+    ): void
 
-    constructor(name: string, requestResult: RequestResult<FaunaHttpErrorResponseContent>)
+    constructor(
+      name: string,
+      requestResult: RequestResult<FaunaHttpErrorResponseContent>
+    )
 
     requestResult: RequestResult<FaunaHttpErrorResponseContent>
     code: string
@@ -40,7 +48,6 @@ export module errors {
   export class InvalidArity extends FaunaHTTPError {}
   export class PayloadTooLarge extends FaunaHTTPError {}
   export class ValidationError extends FaunaHTTPError {}
-  export class TooManyRequests extends FaunaHTTPError {}
   export class StreamError extends FaunaHTTPError {}
   export class StreamsNotSupported extends FaunaHTTPError {}
   export class StreamErrorEvent extends FaunaHTTPError {}

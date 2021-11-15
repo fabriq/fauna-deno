@@ -1,5 +1,6 @@
 import Expr from './Expr'
 
+/** @public */
 export module values {
   export class Value extends Expr {
     toJSON(): object

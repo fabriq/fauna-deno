@@ -5,6 +5,7 @@ import PageHelper from './PageHelper'
 import { ExprArg } from './query'
 import RequestResult from './RequestResult'
 
+/** @public */
 export interface ClientConfig {
   secret: string
   domain?: string
@@ -22,14 +23,17 @@ export interface ClientConfig {
   checkNewVersion?: boolean
 }
 
+/** @public */
 export interface QueryOptions
   extends Partial<
     Pick<ClientConfig, 'secret' | 'queryTimeout' | 'fetch' | 'observer'>
   > {
-    signal?: AbortSignal
-  }
+  signal?: AbortSignal
+}
 
+export type { ExprArg }
 
+/** @public */
 export default class Client {
   constructor(opts?: ClientConfig)
   query<T = object>(expr: ExprArg, options?: QueryOptions): Promise<T>

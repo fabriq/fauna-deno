@@ -1,3 +1,4 @@
+/** @public */
 export default class RequestResult<T extends object = object> {
   constructor(
     method: string,

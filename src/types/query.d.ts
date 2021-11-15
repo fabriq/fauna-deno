@@ -1,8 +1,11 @@
 import Expr from './Expr'
 
-type ExprVal = Expr | string | number | boolean | { [key: string]: any }
-type ExprArg = ExprVal | Array<ExprVal>
-export type Lambda = (...vars: any[]) => Expr
+/** @public */
+export type ExprVal = Expr | string | number | boolean | { [key: string]: any }
+/** @public */
+export type ExprArg = ExprVal | Array<ExprVal>
+/** @public */
+export type LambdaType = (...vars: any[]) => Expr
 
 export function Ref(ref: ExprArg, id?: ExprArg): Expr
 export function Bytes(bytes: ExprArg | ArrayBuffer | Uint8Array): Expr
@@ -17,23 +20,28 @@ export function If(
 ): Expr
 export function Do(...args: ExprArg[]): Expr
 export function Object(fields: ExprArg): Expr
-export function Lambda(f: Lambda): Expr
+
+export function Lambda(f: LambdaType): Expr
 export function Lambda(var_name: ExprArg, expr: ExprArg): Expr
+
 export function Call(ref: ExprArg, ...args: ExprArg[]): Expr
-export function Query(lambda: ExprArg | Lambda): Expr
-export function Map(collection: ExprArg, lambda_expr: ExprArg | Lambda): Expr
+export function Query(lambda: ExprArg | LambdaType): Expr
+export function Map(
+  collection: ExprArg,
+  lambda_expr: ExprArg | LambdaType
+): Expr
 export function Merge(
   object: ExprArg,
   values: ExprArg,
-  resolver?: Expr | Lambda
+  resolver?: Expr | LambdaType
 ): Expr
 export function Foreach(
   collection: ExprArg,
-  lambda_expr: ExprArg | Lambda
+  lambda_expr: ExprArg | LambdaType
 ): Expr
 export function Filter(
   collection: ExprArg,
-  lambda_expr: ExprArg | Lambda
+  lambda_expr: ExprArg | LambdaType
 ): Expr
 export function Take(number: ExprArg, collection: ExprArg): Expr
 export function Drop(number: ExprArg, collection: ExprArg): Expr
@@ -102,7 +110,7 @@ export function Union(...sets: ExprArg[]): Expr
 export function Intersection(...sets: ExprArg[]): Expr
 export function Difference(...sets: ExprArg[]): Expr
 export function Distinct(set: ExprArg): Expr
-export function Join(source: ExprArg, target: ExprArg | Lambda): Expr
+export function Join(source: ExprArg, target: ExprArg | LambdaType): Expr
 
 export function Range(set: ExprArg, from: ExprArg, to: ExprArg): Expr
 export function Login(ref: ExprArg, params: ExprArg): Expr
@@ -134,11 +142,7 @@ export function LowerCase(expr: ExprArg): Expr
 export function LTrim(expr: ExprArg): Expr
 export function NGram(terms: ExprArg, min?: ExprArg, max?: ExprArg): Expr
 export function Repeat(expr: ExprArg, number?: ExprArg): Expr
-export function ReplaceStr(
-  expr: ExprArg,
-  find: ExprArg,
-  replace: ExprArg
-): Expr
+export function ReplaceStr(expr: ExprArg, find: ExprArg, replace: ExprArg): Expr
 export function ReplaceStrRegex(
   expr: ExprArg,
   find: ExprArg,

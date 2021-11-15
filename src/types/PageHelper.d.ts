@@ -1,7 +1,8 @@
 import Client, { QueryOptions } from './Client'
 import Expr from './Expr'
-import { Lambda } from './query'
+import type { LambdaType as Lambda } from './query'
 
+/** @public */
 export default class PageHelper {
   constructor(
     client: Client,
