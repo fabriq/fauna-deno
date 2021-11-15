@@ -1,4 +1,3 @@
-import { fetch } from 'cross-fetch'
 import { errors } from './errors'
 import Expr from './Expr'
 import PageHelper from './PageHelper'
@@ -18,7 +17,6 @@ export interface ClientConfig {
   ) => void
   keepAlive?: boolean
   headers?: { [key: string]: string | number }
-  fetch?: typeof fetch
   http2SessionIdleTime?: number
   checkNewVersion?: boolean
 }
@@ -26,7 +24,7 @@ export interface ClientConfig {
 /** @public */
 export interface QueryOptions
   extends Partial<
-    Pick<ClientConfig, 'secret' | 'queryTimeout' | 'fetch' | 'observer'>
+    Pick<ClientConfig, 'secret' | 'queryTimeout' | 'observer'>
   > {
   signal?: AbortSignal
 }
