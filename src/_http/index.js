@@ -1,5 +1,4 @@
 'use strict'
-import http2 from 'http2'
 import packageJson from '../../package.json'
 import {
   getBrowserDetails,
@@ -9,7 +8,6 @@ import {
   removeNullAndUndefinedValues,
 } from '../_util'
 import FetchAdapter from './fetchAdapter'
-import Http2Adapter from './http2Adapter'
 
 /**
  * The driver's internal HTTP client.
@@ -26,19 +24,11 @@ export default function HttpClient(options) {
     options.port = isHttps ? 443 : 80
   }
 
-  // HTTP2 adapter is applicable only if it's NodeJS env and
-  // no fetch API override provided (to preserve backward-compatibility).
-  var useHttp2Adapter = !options.fetch && isNodeEnv() && http2
-
-  this._adapter = useHttp2Adapter
-    ? new Http2Adapter({
-        http2SessionIdleTime: options.http2SessionIdleTime,
-      })
-    : new FetchAdapter({
-        isHttps: isHttps,
-        fetch: options.fetch,
-        keepAlive: options.keepAlive,
-      })
+  this._adapter = new FetchAdapter({
+    isHttps: isHttps,
+    fetch: options.fetch,
+    keepAlive: options.keepAlive,
+  })
 
   this._baseUrl = options.scheme + '://' + options.domain + ':' + options.port
   this._secret = options.secret
