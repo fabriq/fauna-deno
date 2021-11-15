@@ -144,5 +144,9 @@
     "transform": {
       "^.+\\.js$": "babel-jest"
     }
+  },
+  "volta": {
+    "node": "16.13.0",
+    "npm": "6.14.15"
   }
 }
