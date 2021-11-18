@@ -476,56 +476,9 @@ export function mergeObjects(obj1, obj2) {
   return obj3
 }
 
-/**
- * Resolves which Fetch API compatible function to use. If an override is
- * provided, returns the override. If no override and the global (window) has
- * "fetch" property, return the native fetch. Otherwise, throws.
- *
- * @param {?function} fetchOverride An Fetch API compatible function to use.
- * @returns {function} A Fetch API compatible function.
- * @private
- */
-export function resolveFetch(fetchOverride) {
-  if (typeof fetchOverride === 'function') {
-    return fetchOverride
-  }
-
-  if (typeof global.fetch === 'function') {
-    // NB. Rebinding to global is needed for Safari
-    return global.fetch.bind(global)
-  }
-
-  throw new Error('No fetch in available')
-}
-
 export function notifyAboutNewVersion() {
-  var isNotified
-  const checkAndNotify = checkNewVersion => {
-    if (true || isNotified || !checkNewVersion) return
-    function onResponse(latestVersion) {
-      var isNewVersionAvailable = latestVersion > packageJson.version
-      if (isNewVersionAvailable) {
-        console.info(
-          'New ' +
-            packageJson.name +
-            ' version available ' +
-            packageJson.version +
-            ' → ' +
-            latestVersion +
-            `\nChangelog: https://github.com/fauna/faunadb-js/blob/main/CHANGELOG.md`,
-          { padding: 1, borderColor: 'yellow' }
-        )
-      }
-    }
-
-    isNotified = true
-    resolveFetch()('https://registry.npmjs.org/' + packageJson.name)
-      .then(resp => resp.json())
-      .then(json => onResponse(json['dist-tags'].latest))
-      .catch(err => {
-        console.error('Unable to check new driver version')
-        console.error(err)
-      })
+  const checkAndNotify = () => {
+    return
   }
 
   return checkAndNotify

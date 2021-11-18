@@ -306,12 +306,21 @@ export declare type ExprArg = ExprVal | Array<ExprVal>
 export declare type ExprVal = Expr | string | number | boolean | { [key: string]: any }
 
 /** @public */
+declare function FaunaFunction(name: ExprArg, scope?: ExprArg): Expr
+
+/** @public */
 export declare type FaunaHttpErrorResponseContent = {
     errors: {
         code: string
         description: string
     }[]
 }
+
+/** @public */
+declare function FaunaIndex(name: ExprArg, scope?: ExprArg): Expr
+
+/** @public */
+declare function FaunaObject(fields: ExprArg): Expr
 
 /** @public */
 declare function Filter(
@@ -341,9 +350,6 @@ lambda_expr: ExprArg | Lambda
 
 /** @public */
 declare function Format(string: ExprArg, values: ExprArg): Expr
-
-/** @public */
-declare function Function_2(name: ExprArg, scope?: ExprArg): Expr
 
 /** @public */
 declare function Functions(scope?: ExprArg): Expr
@@ -384,9 +390,6 @@ condition: ExprArg,
 then: ExprArg | null,
 _else: ExprArg | null
 ): Expr
-
-/** @public */
-declare function Index(name: ExprArg, scope?: ExprArg): Expr
 
 /** @public */
 declare function Indexes(scope?: ExprArg): Expr
@@ -581,9 +584,6 @@ declare function Not(bool: ExprArg): Expr
 declare function Now(): Expr
 
 /** @public */
-declare function Object_2(fields: ExprArg): Expr
-
-/** @public */
 declare function Or(...args: ExprArg[]): Expr
 
 /** @public */
@@ -627,7 +627,7 @@ declare namespace query {
         Var,
         If,
         Do,
-        Object_2 as Object,
+        FaunaObject,
         Lambda_2 as Lambda,
         Call,
         Query,
@@ -742,10 +742,10 @@ declare namespace query {
         NextId,
         NewId,
         Database,
-        Index,
+        FaunaIndex,
         Class,
         Collection,
-        Function_2 as Function,
+        FaunaFunction,
         Role,
         AccessProviders,
         Databases,

@@ -12,6 +12,11 @@ var __commonJS = (cb, mod) =>
       mod.exports
     )
   }
+var __export = (target, all) => {
+  __markAsModule(target)
+  for (var name2 in all)
+    __defProp(target, name2, { get: all[name2], enumerable: true })
+}
 var __reExport = (target, module2, desc) => {
   if (
     (module2 && typeof module2 === 'object') ||
@@ -236,9 +241,220 @@ var require_fn_annotate = __commonJS({
   },
 })
 
+// src/query/index.js
+var query_exports = {}
+__export(query_exports, {
+  Abort: () => Abort,
+  Abs: () => Abs,
+  AccessProvider: () => AccessProvider,
+  AccessProviders: () => AccessProviders,
+  Acos: () => Acos,
+  Add: () => Add,
+  All: () => All,
+  And: () => And,
+  Any: () => Any,
+  Append: () => Append,
+  Asin: () => Asin,
+  At: () => At,
+  Atan: () => Atan,
+  BitAnd: () => BitAnd,
+  BitNot: () => BitNot,
+  BitOr: () => BitOr,
+  BitXor: () => BitXor,
+  Bytes: () => Bytes2,
+  Call: () => Call,
+  Casefold: () => Casefold,
+  Ceil: () => Ceil,
+  Class: () => Class_default,
+  Classes: () => Classes_default,
+  Collection: () => Collection,
+  Collections: () => Collections,
+  Concat: () => Concat,
+  Contains: () => Contains_default,
+  ContainsField: () => ContainsField,
+  ContainsPath: () => ContainsPath,
+  ContainsStr: () => ContainsStr,
+  ContainsStrRegex: () => ContainsStrRegex,
+  ContainsValue: () => ContainsValue,
+  Cos: () => Cos,
+  Cosh: () => Cosh,
+  Count: () => Count,
+  Create: () => Create,
+  CreateAccessProvider: () => CreateAccessProvider,
+  CreateClass: () => CreateClass_default,
+  CreateCollection: () => CreateCollection,
+  CreateDatabase: () => CreateDatabase,
+  CreateFunction: () => CreateFunction,
+  CreateIndex: () => CreateIndex,
+  CreateKey: () => CreateKey,
+  CreateRole: () => CreateRole,
+  Credentials: () => Credentials,
+  CurrentIdentity: () => CurrentIdentity,
+  CurrentToken: () => CurrentToken,
+  Database: () => Database,
+  Databases: () => Databases,
+  Date: () => Date2,
+  DayOfMonth: () => DayOfMonth,
+  DayOfWeek: () => DayOfWeek,
+  DayOfYear: () => DayOfYear,
+  Degrees: () => Degrees,
+  Delete: () => Delete,
+  Difference: () => Difference,
+  Distinct: () => Distinct,
+  Divide: () => Divide,
+  Do: () => Do,
+  Documents: () => Documents,
+  Drop: () => Drop,
+  EndsWith: () => EndsWith,
+  Epoch: () => Epoch,
+  Equals: () => Equals,
+  Events: () => Events,
+  Exists: () => Exists,
+  Exp: () => Exp,
+  FaunaFunction: () => FaunaFunction,
+  FaunaIndex: () => FaunaIndex,
+  FaunaObject: () => FaunaObject_default,
+  Filter: () => Filter,
+  FindStr: () => FindStr,
+  FindStrRegex: () => FindStrRegex,
+  Floor: () => Floor,
+  Foreach: () => Foreach,
+  Format: () => Format,
+  Functions: () => Functions,
+  GT: () => GT,
+  GTE: () => GTE,
+  Get: () => Get,
+  HasCurrentIdentity: () => HasCurrentIdentity,
+  HasCurrentToken: () => HasCurrentToken,
+  HasIdentity: () => HasIdentity_default,
+  Hour: () => Hour,
+  Hypot: () => Hypot,
+  Identify: () => Identify,
+  Identity: () => Identity_default,
+  If: () => If,
+  Indexes: () => Indexes,
+  Insert: () => Insert,
+  Intersection: () => Intersection,
+  IsArray: () => IsArray,
+  IsBoolean: () => IsBoolean,
+  IsBytes: () => IsBytes,
+  IsCollection: () => IsCollection,
+  IsCredentials: () => IsCredentials,
+  IsDatabase: () => IsDatabase,
+  IsDate: () => IsDate,
+  IsDoc: () => IsDoc,
+  IsDouble: () => IsDouble,
+  IsEmpty: () => IsEmpty,
+  IsFunction: () => IsFunction,
+  IsIndex: () => IsIndex,
+  IsInteger: () => IsInteger,
+  IsKey: () => IsKey,
+  IsLambda: () => IsLambda,
+  IsNonEmpty: () => IsNonEmpty,
+  IsNull: () => IsNull,
+  IsNumber: () => IsNumber,
+  IsObject: () => IsObject,
+  IsRef: () => IsRef,
+  IsRole: () => IsRole,
+  IsSet: () => IsSet,
+  IsString: () => IsString,
+  IsTimestamp: () => IsTimestamp,
+  IsToken: () => IsToken,
+  Join: () => Join,
+  KeyFromSecret: () => KeyFromSecret,
+  Keys: () => Keys,
+  LT: () => LT,
+  LTE: () => LTE,
+  LTrim: () => LTrim,
+  Lambda: () => Lambda,
+  Length: () => Length,
+  Let: () => Let,
+  Ln: () => Ln,
+  Log: () => Log,
+  Login: () => Login,
+  Logout: () => Logout,
+  LowerCase: () => LowerCase,
+  Map: () => Map2,
+  Match: () => Match,
+  Max: () => Max,
+  Mean: () => Mean,
+  Merge: () => Merge,
+  Min: () => Min,
+  Minute: () => Minute,
+  Modulo: () => Modulo,
+  Month: () => Month,
+  MoveDatabase: () => MoveDatabase,
+  Multiply: () => Multiply,
+  NGram: () => NGram,
+  NewId: () => NewId,
+  NextId: () => NextId_default,
+  Not: () => Not,
+  Now: () => Now,
+  Or: () => Or,
+  Paginate: () => Paginate,
+  Pow: () => Pow,
+  Prepend: () => Prepend,
+  Query: () => Query2,
+  RTrim: () => RTrim,
+  Radians: () => Radians,
+  Range: () => Range,
+  Reduce: () => Reduce,
+  Ref: () => Ref2,
+  RegexEscape: () => RegexEscape,
+  Remove: () => Remove,
+  Repeat: () => Repeat,
+  Replace: () => Replace,
+  ReplaceStr: () => ReplaceStr,
+  ReplaceStrRegex: () => ReplaceStrRegex,
+  Reverse: () => Reverse,
+  Role: () => Role,
+  Roles: () => Roles,
+  Round: () => Round,
+  Second: () => Second,
+  Select: () => Select,
+  SelectAll: () => SelectAll_default,
+  Sign: () => Sign,
+  Sin: () => Sin,
+  Singleton: () => Singleton,
+  Sinh: () => Sinh,
+  Space: () => Space,
+  Sqrt: () => Sqrt,
+  StartsWith: () => StartsWith,
+  SubString: () => SubString,
+  Subtract: () => Subtract,
+  Sum: () => Sum,
+  Take: () => Take,
+  Tan: () => Tan,
+  Tanh: () => Tanh,
+  Time: () => Time,
+  TimeAdd: () => TimeAdd,
+  TimeDiff: () => TimeDiff,
+  TimeSubtract: () => TimeSubtract,
+  TitleCase: () => TitleCase,
+  ToArray: () => ToArray,
+  ToDate: () => ToDate,
+  ToDouble: () => ToDouble,
+  ToInteger: () => ToInteger,
+  ToMicros: () => ToMicros,
+  ToMillis: () => ToMillis,
+  ToNumber: () => ToNumber,
+  ToObject: () => ToObject,
+  ToSeconds: () => ToSeconds,
+  ToString: () => ToString,
+  ToTime: () => ToTime,
+  Tokens: () => Tokens,
+  Trim: () => Trim,
+  Trunc: () => Trunc,
+  Union: () => Union,
+  Update: () => Update,
+  UpperCase: () => UpperCase,
+  Var: () => Var,
+  Year: () => Year,
+})
+
 // package.json
 var name = '@yacinehmito/faunadb'
-var version = '5.0.0-deno-alpha7'
+var version = '5.0.0-deno-alpha8'
 var apiVersion = '5'
 var description = 'FaunaDB Javascript driver for Node.JS and Browsers'
 var homepage = 'https://fauna.com'
@@ -294,8 +510,7 @@ var scripts = {
   'build:browser': 'webpack',
   'build:cjs': 'cross-env BABEL_ENV=cjs npx babel src -d ./cjs',
   'build:esm5': 'cross-env BABEL_ENV=esm npx babel src -d ./esm5',
-  'build:package':
-    'npm-run-all build:clean build:browser build:cjs build:esm5 build:deno',
+  'build:package': 'npm-run-all build:clean build:deno',
   'build:deno':
     'esbuild --bundle src/index.js --outfile=mod.js --platform=neutral --format=esm --target=esnext && api-extractor run',
   'postbuild:package': 'node tools/postBuildPackage.js',
@@ -630,46 +845,234 @@ function encode(input) {
     return null
   }
 }
-function resolveFetch(fetchOverride) {
-  if (typeof fetchOverride === 'function') {
-    return fetchOverride
-  }
-  if (typeof global.fetch === 'function') {
-    return global.fetch.bind(global)
-  }
-  throw new Error('No fetch in available')
-}
 function notifyAboutNewVersion() {
-  var isNotified
-  const checkAndNotify = checkNewVersion => {
-    if (true) return
-    function onResponse(latestVersion) {
-      var isNewVersionAvailable = latestVersion > package_default.version
-      if (isNewVersionAvailable) {
-        console.info(
-          'New ' +
-            package_default.name +
-            ' version available ' +
-            package_default.version +
-            ' \u2192 ' +
-            latestVersion +
-            `
-Changelog: https://github.com/fauna/faunadb-js/blob/main/CHANGELOG.md`,
-          { padding: 1, borderColor: 'yellow' }
-        )
-      }
-    }
-    isNotified = true
-    resolveFetch()('https://registry.npmjs.org/' + package_default.name)
-      .then(resp => resp.json())
-      .then(json => onResponse(json['dist-tags'].latest))
-      .catch(err => {
-        console.error('Unable to check new driver version')
-        console.error(err)
-      })
+  const checkAndNotify = () => {
+    return
   }
   return checkAndNotify
 }
+
+// src/Expr.js
+;('use strict')
+function Expr(obj) {
+  this.raw = obj
+}
+Expr.prototype._isFaunaExpr = true
+Expr.prototype.toJSON = function() {
+  return this.raw
+}
+Expr.prototype.toFQL = function() {
+  return exprToString(this.raw)
+}
+var varArgsFunctions = [
+  'Do',
+  'Call',
+  'Union',
+  'Intersection',
+  'Difference',
+  'Equals',
+  'Add',
+  'BitAnd',
+  'BitOr',
+  'BitXor',
+  'Divide',
+  'Max',
+  'Min',
+  'Modulo',
+  'Multiply',
+  'Subtract',
+  'LT',
+  'LTE',
+  'GT',
+  'GTE',
+  'And',
+  'Or',
+]
+var specialCases = {
+  containsstrregex: 'ContainsStrRegex',
+  containsstr: 'ContainsStr',
+  endswith: 'EndsWith',
+  findstr: 'FindStr',
+  findstrregex: 'FindStrRegex',
+  gt: 'GT',
+  gte: 'GTE',
+  is_nonempty: 'is_non_empty',
+  lowercase: 'LowerCase',
+  lt: 'LT',
+  lte: 'LTE',
+  ltrim: 'LTrim',
+  ngram: 'NGram',
+  rtrim: 'RTrim',
+  regexescape: 'RegexEscape',
+  replacestr: 'ReplaceStr',
+  replacestrregex: 'ReplaceStrRegex',
+  startswith: 'StartsWith',
+  substring: 'SubString',
+  titlecase: 'TitleCase',
+  uppercase: 'UpperCase',
+}
+function isExpr(expression) {
+  return (
+    expression instanceof Expr ||
+    checkInstanceHasProperty(expression, '_isFaunaExpr')
+  )
+}
+function printObject(obj) {
+  return (
+    '{' +
+    Object.keys(obj)
+      .map(function(k) {
+        return '"' + k + '": ' + exprToString(obj[k])
+      })
+      .join(', ') +
+    '}'
+  )
+}
+function printArray(arr, toStr) {
+  return arr
+    .map(function(item) {
+      return toStr(item)
+    })
+    .join(', ')
+}
+function convertToCamelCase(fn) {
+  if (fn in specialCases) fn = specialCases[fn]
+  return fn
+    .split('_')
+    .map(function(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1)
+    })
+    .join('')
+}
+var exprToString = function(expr, caller) {
+  if (isExpr(expr)) {
+    if ('value' in expr) return expr.toString()
+    expr = expr.raw
+  }
+  if (expr === null) {
+    return 'null'
+  }
+  switch (typeof expr) {
+    case 'string':
+      return JSON.stringify(expr)
+    case 'symbol':
+    case 'number':
+    case 'boolean':
+      return expr.toString()
+    case 'undefined':
+      return 'undefined'
+  }
+  if (Array.isArray(expr)) {
+    var array = printArray(expr, exprToString)
+    return varArgsFunctions.indexOf(caller) != -1 ? array : '[' + array + ']'
+  }
+  if ('match' in expr) {
+    var matchStr = exprToString(expr['match'])
+    var terms = expr['terms'] || []
+    if (isExpr(terms)) terms = terms.raw
+    if (Array.isArray(terms) && terms.length == 0)
+      return 'Match(' + matchStr + ')'
+    if (Array.isArray(terms)) {
+      return (
+        'Match(' + matchStr + ', [' + printArray(terms, exprToString) + '])'
+      )
+    }
+    return 'Match(' + matchStr + ', ' + exprToString(terms) + ')'
+  }
+  if ('paginate' in expr) {
+    var exprKeys = Object.keys(expr)
+    if (exprKeys.length === 1) {
+      return 'Paginate(' + exprToString(expr['paginate']) + ')'
+    }
+    var expr2 = Object.assign({}, expr)
+    delete expr2['paginate']
+    return (
+      'Paginate(' +
+      exprToString(expr['paginate']) +
+      ', ' +
+      printObject(expr2) +
+      ')'
+    )
+  }
+  if ('let' in expr && 'in' in expr) {
+    var letExpr = ''
+    if (Array.isArray(expr['let']))
+      letExpr = '[' + printArray(expr['let'], printObject) + ']'
+    else letExpr = printObject(expr['let'])
+    return 'Let(' + letExpr + ', ' + exprToString(expr['in']) + ')'
+  }
+  if ('object' in expr) return printObject(expr['object'])
+  if ('merge' in expr) {
+    if (expr.lambda) {
+      return (
+        'Merge(' +
+        exprToString(expr.merge) +
+        ', ' +
+        exprToString(expr.with) +
+        ', ' +
+        exprToString(expr.lambda) +
+        ')'
+      )
+    }
+    return (
+      'Merge(' + exprToString(expr.merge) + ', ' + exprToString(expr.with) + ')'
+    )
+  }
+  if ('lambda' in expr) {
+    return (
+      'Lambda(' +
+      exprToString(expr['lambda']) +
+      ', ' +
+      exprToString(expr['expr']) +
+      ')'
+    )
+  }
+  if ('filter' in expr) {
+    return (
+      'Filter(' +
+      exprToString(expr['collection']) +
+      ', ' +
+      exprToString(expr['filter']) +
+      ')'
+    )
+  }
+  if ('call' in expr) {
+    return (
+      'Call(' +
+      exprToString(expr['call']) +
+      ', ' +
+      exprToString(expr['arguments']) +
+      ')'
+    )
+  }
+  if ('map' in expr) {
+    return (
+      'Map(' +
+      exprToString(expr['collection']) +
+      ', ' +
+      exprToString(expr['map']) +
+      ')'
+    )
+  }
+  if ('foreach' in expr) {
+    return (
+      'Foreach(' +
+      exprToString(expr['collection']) +
+      ', ' +
+      exprToString(expr['foreach']) +
+      ')'
+    )
+  }
+  var keys = Object.keys(expr)
+  var fn = keys[0]
+  fn = convertToCamelCase(fn)
+  var args = keys
+    .filter(k => expr[k] !== null || keys.length > 1)
+    .map(k => exprToString(expr[k], fn))
+    .join(', ')
+  return fn + '(' + args + ')'
+}
+Expr.toString = exprToString
 
 // src/errors.js
 ;('use strict')
@@ -938,228 +1341,6 @@ function errorClassFactory(name2) {
   inherits(ErrorClass, FaunaHTTPError)
   return ErrorClass
 }
-
-// src/Expr.js
-;('use strict')
-function Expr(obj) {
-  this.raw = obj
-}
-Expr.prototype._isFaunaExpr = true
-Expr.prototype.toJSON = function() {
-  return this.raw
-}
-Expr.prototype.toFQL = function() {
-  return exprToString(this.raw)
-}
-var varArgsFunctions = [
-  'Do',
-  'Call',
-  'Union',
-  'Intersection',
-  'Difference',
-  'Equals',
-  'Add',
-  'BitAnd',
-  'BitOr',
-  'BitXor',
-  'Divide',
-  'Max',
-  'Min',
-  'Modulo',
-  'Multiply',
-  'Subtract',
-  'LT',
-  'LTE',
-  'GT',
-  'GTE',
-  'And',
-  'Or',
-]
-var specialCases = {
-  containsstrregex: 'ContainsStrRegex',
-  containsstr: 'ContainsStr',
-  endswith: 'EndsWith',
-  findstr: 'FindStr',
-  findstrregex: 'FindStrRegex',
-  gt: 'GT',
-  gte: 'GTE',
-  is_nonempty: 'is_non_empty',
-  lowercase: 'LowerCase',
-  lt: 'LT',
-  lte: 'LTE',
-  ltrim: 'LTrim',
-  ngram: 'NGram',
-  rtrim: 'RTrim',
-  regexescape: 'RegexEscape',
-  replacestr: 'ReplaceStr',
-  replacestrregex: 'ReplaceStrRegex',
-  startswith: 'StartsWith',
-  substring: 'SubString',
-  titlecase: 'TitleCase',
-  uppercase: 'UpperCase',
-}
-function isExpr(expression) {
-  return (
-    expression instanceof Expr ||
-    checkInstanceHasProperty(expression, '_isFaunaExpr')
-  )
-}
-function printObject(obj) {
-  return (
-    '{' +
-    Object.keys(obj)
-      .map(function(k) {
-        return '"' + k + '": ' + exprToString(obj[k])
-      })
-      .join(', ') +
-    '}'
-  )
-}
-function printArray(arr, toStr) {
-  return arr
-    .map(function(item) {
-      return toStr(item)
-    })
-    .join(', ')
-}
-function convertToCamelCase(fn) {
-  if (fn in specialCases) fn = specialCases[fn]
-  return fn
-    .split('_')
-    .map(function(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1)
-    })
-    .join('')
-}
-var exprToString = function(expr, caller) {
-  if (isExpr(expr)) {
-    if ('value' in expr) return expr.toString()
-    expr = expr.raw
-  }
-  if (expr === null) {
-    return 'null'
-  }
-  switch (typeof expr) {
-    case 'string':
-      return JSON.stringify(expr)
-    case 'symbol':
-    case 'number':
-    case 'boolean':
-      return expr.toString()
-    case 'undefined':
-      return 'undefined'
-  }
-  if (Array.isArray(expr)) {
-    var array = printArray(expr, exprToString)
-    return varArgsFunctions.indexOf(caller) != -1 ? array : '[' + array + ']'
-  }
-  if ('match' in expr) {
-    var matchStr = exprToString(expr['match'])
-    var terms = expr['terms'] || []
-    if (isExpr(terms)) terms = terms.raw
-    if (Array.isArray(terms) && terms.length == 0)
-      return 'Match(' + matchStr + ')'
-    if (Array.isArray(terms)) {
-      return (
-        'Match(' + matchStr + ', [' + printArray(terms, exprToString) + '])'
-      )
-    }
-    return 'Match(' + matchStr + ', ' + exprToString(terms) + ')'
-  }
-  if ('paginate' in expr) {
-    var exprKeys = Object.keys(expr)
-    if (exprKeys.length === 1) {
-      return 'Paginate(' + exprToString(expr['paginate']) + ')'
-    }
-    var expr2 = Object.assign({}, expr)
-    delete expr2['paginate']
-    return (
-      'Paginate(' +
-      exprToString(expr['paginate']) +
-      ', ' +
-      printObject(expr2) +
-      ')'
-    )
-  }
-  if ('let' in expr && 'in' in expr) {
-    var letExpr = ''
-    if (Array.isArray(expr['let']))
-      letExpr = '[' + printArray(expr['let'], printObject) + ']'
-    else letExpr = printObject(expr['let'])
-    return 'Let(' + letExpr + ', ' + exprToString(expr['in']) + ')'
-  }
-  if ('object' in expr) return printObject(expr['object'])
-  if ('merge' in expr) {
-    if (expr.lambda) {
-      return (
-        'Merge(' +
-        exprToString(expr.merge) +
-        ', ' +
-        exprToString(expr.with) +
-        ', ' +
-        exprToString(expr.lambda) +
-        ')'
-      )
-    }
-    return (
-      'Merge(' + exprToString(expr.merge) + ', ' + exprToString(expr.with) + ')'
-    )
-  }
-  if ('lambda' in expr) {
-    return (
-      'Lambda(' +
-      exprToString(expr['lambda']) +
-      ', ' +
-      exprToString(expr['expr']) +
-      ')'
-    )
-  }
-  if ('filter' in expr) {
-    return (
-      'Filter(' +
-      exprToString(expr['collection']) +
-      ', ' +
-      exprToString(expr['filter']) +
-      ')'
-    )
-  }
-  if ('call' in expr) {
-    return (
-      'Call(' +
-      exprToString(expr['call']) +
-      ', ' +
-      exprToString(expr['arguments']) +
-      ')'
-    )
-  }
-  if ('map' in expr) {
-    return (
-      'Map(' +
-      exprToString(expr['collection']) +
-      ', ' +
-      exprToString(expr['map']) +
-      ')'
-    )
-  }
-  if ('foreach' in expr) {
-    return (
-      'Foreach(' +
-      exprToString(expr['collection']) +
-      ', ' +
-      exprToString(expr['foreach']) +
-      ')'
-    )
-  }
-  var keys = Object.keys(expr)
-  var fn = keys[0]
-  fn = convertToCamelCase(fn)
-  var args = keys
-    .filter(k => expr[k] !== null || keys.length > 1)
-    .map(k => exprToString(expr[k], fn))
-    .join(', ')
-  return fn + '(' + args + ')'
-}
-Expr.toString = exprToString
 
 // src/values.js
 var base64 = __toModule(require_base64_js())
@@ -1471,6 +1652,21 @@ function wrapValues(obj) {
     return null
   }
 }
+function varargs(values) {
+  var valuesAsArr = Array.isArray(values)
+    ? values
+    : Array.prototype.slice.call(values)
+  return values.length === 1 ? values[0] : valuesAsArr
+}
+function params(mainParams, optionalParams) {
+  for (var key in optionalParams) {
+    var val = optionalParams[key]
+    if (val !== null && val !== void 0) {
+      mainParams[key] = val
+    }
+  }
+  return mainParams
+}
 function arity(min, max, args, callerFunc) {
   if (
     (min !== null && args.length < min) ||
@@ -1491,6 +1687,471 @@ arity.min = function(n, args, callerFunc) {
 arity.between = function(min, max, args, callerFunc) {
   arity(min, max, args, callerFunc)
 }
+function argsToArray(args) {
+  var rv = []
+  rv.push.apply(rv, args)
+  return rv
+}
+
+// src/query/Abort.js
+function Abort(msg) {
+  arity.exact(1, arguments, Abort.name)
+  return new Expr({ abort: wrap(msg) })
+}
+
+// src/query/Abs.js
+function Abs(expr) {
+  arity.exact(1, arguments, Abs.name)
+  return new Expr({ abs: wrap(expr) })
+}
+
+// src/query/AccessProvider.js
+function AccessProvider(name2) {
+  arity.exact(1, arguments, AccessProvider.name)
+  return new Expr({ access_provider: wrap(name2) })
+}
+
+// src/query/AccessProviders.js
+function AccessProviders(scope) {
+  arity.max(1, arguments, AccessProviders.name)
+  scope = defaults(scope, null)
+  return new Expr({ access_providers: wrap(scope) })
+}
+
+// src/query/Acos.js
+function Acos(expr) {
+  arity.exact(1, arguments, Acos.name)
+  return new Expr({ acos: wrap(expr) })
+}
+
+// src/query/Add.js
+function Add() {
+  arity.min(1, arguments, Add.name)
+  return new Expr({ add: wrap(varargs(arguments)) })
+}
+
+// src/query/All.js
+function All(collection) {
+  arity.exact(1, arguments, All.name)
+  return new Expr({ all: wrap(collection) })
+}
+
+// src/query/And.js
+function And() {
+  arity.min(1, arguments, And.name)
+  return new Expr({ and: wrap(varargs(arguments)) })
+}
+
+// src/query/Any.js
+function Any(collection) {
+  arity.exact(1, arguments, Any.name)
+  return new Expr({ any: wrap(collection) })
+}
+
+// src/query/Append.js
+function Append(elements, collection) {
+  arity.exact(2, arguments, Append.name)
+  return new Expr({ append: wrap(elements), collection: wrap(collection) })
+}
+
+// src/query/Asin.js
+function Asin(expr) {
+  arity.exact(1, arguments, Asin.name)
+  return new Expr({ asin: wrap(expr) })
+}
+
+// src/query/At.js
+function At(timestamp, expr) {
+  arity.exact(2, arguments, At.name)
+  return new Expr({ at: wrap(timestamp), expr: wrap(expr) })
+}
+
+// src/query/Atan.js
+function Atan(expr) {
+  arity.exact(1, arguments, Atan.name)
+  return new Expr({ atan: wrap(expr) })
+}
+
+// src/query/BitAnd.js
+function BitAnd() {
+  arity.min(1, arguments, BitAnd.name)
+  return new Expr({ bitand: wrap(varargs(arguments)) })
+}
+
+// src/query/BitNot.js
+function BitNot(expr) {
+  arity.exact(1, arguments, BitNot.name)
+  return new Expr({ bitnot: wrap(expr) })
+}
+
+// src/query/BitOr.js
+function BitOr() {
+  arity.min(1, arguments, BitOr.name)
+  return new Expr({ bitor: wrap(varargs(arguments)) })
+}
+
+// src/query/BitXor.js
+function BitXor() {
+  arity.min(1, arguments, BitXor.name)
+  return new Expr({ bitxor: wrap(varargs(arguments)) })
+}
+
+// src/query/Bytes.js
+function Bytes2(bytes) {
+  arity.exact(1, arguments, Bytes2.name)
+  return new Bytes(bytes)
+}
+
+// src/query/Call.js
+function Call(ref) {
+  arity.min(1, arguments, Call.name)
+  var args = argsToArray(arguments)
+  args.shift()
+  return new Expr({ call: wrap(ref), arguments: wrap(varargs(args)) })
+}
+
+// src/query/Casefold.js
+function Casefold(string, normalizer) {
+  arity.min(1, arguments, Casefold.name)
+  return new Expr(
+    params({ casefold: wrap(string) }, { normalizer: wrap(normalizer) })
+  )
+}
+
+// src/query/Ceil.js
+function Ceil(expr) {
+  arity.exact(1, arguments, Ceil.name)
+  return new Expr({ ceil: wrap(expr) })
+}
+
+// src/query/Class.js
+var Class_default = deprecate(function(name2, scope) {
+  arity.between(1, 2, arguments, 'Class')
+  switch (arguments.length) {
+    case 1:
+      return new Expr({ class: wrap(name2) })
+    case 2:
+      return new Expr({ class: wrap(name2), scope: wrap(scope) })
+  }
+}, 'Class() is deprecated, use Collection() instead')
+
+// src/query/Classes.js
+var Classes_default = deprecate(function(scope) {
+  arity.max(1, arguments, 'Classes')
+  scope = defaults(scope, null)
+  return new Expr({ classes: wrap(scope) })
+}, 'Classes() is deprecated, use Collections() instead')
+
+// src/query/Collection.js
+function Collection(name2, scope) {
+  arity.between(1, 2, arguments, Collection.name)
+  switch (arguments.length) {
+    case 1:
+      return new Expr({ collection: wrap(name2) })
+    case 2:
+      return new Expr({ collection: wrap(name2), scope: wrap(scope) })
+  }
+}
+
+// src/query/Collections.js
+function Collections(scope) {
+  arity.max(1, arguments, Collections.name)
+  scope = defaults(scope, null)
+  return new Expr({ collections: wrap(scope) })
+}
+
+// src/query/Concat.js
+function Concat(strings, separator) {
+  arity.min(1, arguments, Concat.name)
+  separator = defaults(separator, null)
+  return new Expr(
+    params({ concat: wrap(strings) }, { separator: wrap(separator) })
+  )
+}
+
+// src/query/Contains.js
+var Contains_default = deprecate(function(path, _in) {
+  arity.exact(2, arguments, 'Contains')
+  return new Expr({ contains: wrap(path), in: wrap(_in) })
+}, 'Contains() is deprecated, use ContainsPath() instead')
+
+// src/query/ContainsField.js
+function ContainsField(field, obj) {
+  arity.exact(2, arguments, ContainsField.name)
+  return new Expr({ contains_field: wrap(field), in: wrap(obj) })
+}
+
+// src/query/ContainsPath.js
+function ContainsPath(path, _in) {
+  arity.exact(2, arguments, ContainsPath.name)
+  return new Expr({ contains_path: wrap(path), in: wrap(_in) })
+}
+
+// src/query/ContainsStr.js
+function ContainsStr(value, search) {
+  arity.exact(2, arguments, ContainsStr.name)
+  return new Expr({ containsstr: wrap(value), search: wrap(search) })
+}
+
+// src/query/ContainsStrRegex.js
+function ContainsStrRegex(value, pattern) {
+  arity.exact(2, arguments, ContainsStrRegex.name)
+  return new Expr({ containsstrregex: wrap(value), pattern: wrap(pattern) })
+}
+
+// src/query/ContainsValue.js
+function ContainsValue(value, _in) {
+  arity.exact(2, arguments, ContainsValue.name)
+  return new Expr({ contains_value: wrap(value), in: wrap(_in) })
+}
+
+// src/query/Cos.js
+function Cos(expr) {
+  arity.exact(1, arguments, Cos.name)
+  return new Expr({ cos: wrap(expr) })
+}
+
+// src/query/Cosh.js
+function Cosh(expr) {
+  arity.exact(1, arguments, Cosh.name)
+  return new Expr({ cosh: wrap(expr) })
+}
+
+// src/query/Count.js
+function Count(collection) {
+  arity.exact(1, arguments, Count.name)
+  return new Expr({ count: wrap(collection) })
+}
+
+// src/query/Create.js
+function Create(collection_ref, params2) {
+  arity.between(1, 2, arguments, Create.name)
+  return new Expr({ create: wrap(collection_ref), params: wrap(params2) })
+}
+
+// src/query/CreateAccessProvider.js
+function CreateAccessProvider(params2) {
+  arity.exact(1, arguments, CreateAccessProvider.name)
+  return new Expr({ create_access_provider: wrap(params2) })
+}
+
+// src/query/CreateClass.js
+var CreateClass_default = deprecate(function(params2) {
+  arity.exact(1, arguments, 'CreateClass')
+  return new Expr({ create_class: wrap(params2) })
+}, 'CreateClass() is deprecated, use CreateCollection() instead')
+
+// src/query/CreateCollection.js
+function CreateCollection(params2) {
+  arity.exact(1, arguments, CreateCollection.name)
+  return new Expr({ create_collection: wrap(params2) })
+}
+
+// src/query/CreateDatabase.js
+function CreateDatabase(params2) {
+  arity.exact(1, arguments, CreateDatabase.name)
+  return new Expr({ create_database: wrap(params2) })
+}
+
+// src/query/CreateFunction.js
+function CreateFunction(params2) {
+  arity.exact(1, arguments, CreateFunction.name)
+  return new Expr({ create_function: wrap(params2) })
+}
+
+// src/query/CreateIndex.js
+function CreateIndex(params2) {
+  arity.exact(1, arguments, CreateIndex.name)
+  return new Expr({ create_index: wrap(params2) })
+}
+
+// src/query/CreateKey.js
+function CreateKey(params2) {
+  arity.exact(1, arguments, CreateKey.name)
+  return new Expr({ create_key: wrap(params2) })
+}
+
+// src/query/CreateRole.js
+function CreateRole(params2) {
+  arity.exact(1, arguments, CreateRole.name)
+  return new Expr({ create_role: wrap(params2) })
+}
+
+// src/query/Credentials.js
+function Credentials(scope) {
+  arity.max(1, arguments, Credentials.name)
+  scope = defaults(scope, null)
+  return new Expr({ credentials: wrap(scope) })
+}
+
+// src/query/CurrentIdentity.js
+function CurrentIdentity() {
+  arity.exact(0, arguments, CurrentIdentity.name)
+  return new Expr({ current_identity: null })
+}
+
+// src/query/CurrentToken.js
+function CurrentToken() {
+  arity.exact(0, arguments, CurrentToken.name)
+  return new Expr({ current_token: null })
+}
+
+// src/query/Database.js
+function Database(name2, scope) {
+  arity.between(1, 2, arguments, Database.name)
+  switch (arguments.length) {
+    case 1:
+      return new Expr({ database: wrap(name2) })
+    case 2:
+      return new Expr({ database: wrap(name2), scope: wrap(scope) })
+  }
+}
+
+// src/query/Databases.js
+function Databases(scope) {
+  arity.max(1, arguments, Databases.name)
+  scope = defaults(scope, null)
+  return new Expr({ databases: wrap(scope) })
+}
+
+// src/query/Date.js
+function Date2(string) {
+  arity.exact(1, arguments, Date2.name)
+  return new Expr({ date: wrap(string) })
+}
+
+// src/query/DayOfMonth.js
+function DayOfMonth(expr) {
+  arity.exact(1, arguments, DayOfMonth.name)
+  return new Expr({ day_of_month: wrap(expr) })
+}
+
+// src/query/DayOfWeek.js
+function DayOfWeek(expr) {
+  arity.exact(1, arguments, DayOfWeek.name)
+  return new Expr({ day_of_week: wrap(expr) })
+}
+
+// src/query/DayOfYear.js
+function DayOfYear(expr) {
+  arity.exact(1, arguments, DayOfYear.name)
+  return new Expr({ day_of_year: wrap(expr) })
+}
+
+// src/query/Degrees.js
+function Degrees(expr) {
+  arity.exact(1, arguments, Degrees.name)
+  return new Expr({ degrees: wrap(expr) })
+}
+
+// src/query/Delete.js
+function Delete(ref) {
+  arity.exact(1, arguments, Delete.name)
+  return new Expr({ delete: wrap(ref) })
+}
+
+// src/query/Difference.js
+function Difference() {
+  arity.min(1, arguments, Difference.name)
+  return new Expr({ difference: wrap(varargs(arguments)) })
+}
+
+// src/query/Distinct.js
+function Distinct(set) {
+  arity.exact(1, arguments, Distinct.name)
+  return new Expr({ distinct: wrap(set) })
+}
+
+// src/query/Divide.js
+function Divide() {
+  arity.min(1, arguments, Divide.name)
+  return new Expr({ divide: wrap(varargs(arguments)) })
+}
+
+// src/query/Do.js
+function Do() {
+  arity.min(1, arguments, Do.name)
+  var args = argsToArray(arguments)
+  return new Expr({ do: wrap(args) })
+}
+
+// src/query/Documents.js
+function Documents(collection) {
+  arity.exact(1, arguments, Documents.name)
+  return new Expr({ documents: wrap(collection) })
+}
+
+// src/query/Drop.js
+function Drop(number, collection) {
+  arity.exact(2, arguments, Drop.name)
+  return new Expr({ drop: wrap(number), collection: wrap(collection) })
+}
+
+// src/query/EndsWith.js
+function EndsWith(value, search) {
+  arity.exact(2, arguments, EndsWith.name)
+  return new Expr({ endswith: wrap(value), search: wrap(search) })
+}
+
+// src/query/Epoch.js
+function Epoch(number, unit) {
+  arity.exact(2, arguments, Epoch.name)
+  return new Expr({ epoch: wrap(number), unit: wrap(unit) })
+}
+
+// src/query/Equals.js
+function Equals() {
+  arity.min(1, arguments, Equals.name)
+  return new Expr({ equals: wrap(varargs(arguments)) })
+}
+
+// src/query/Events.js
+function Events(ref_set) {
+  arity.exact(1, arguments, Events.name)
+  return new Expr({ events: wrap(ref_set) })
+}
+
+// src/query/Exists.js
+function Exists(ref, ts) {
+  arity.between(1, 2, arguments, Exists.name)
+  ts = defaults(ts, null)
+  return new Expr(params({ exists: wrap(ref) }, { ts: wrap(ts) }))
+}
+
+// src/query/Exp.js
+function Exp(expr) {
+  arity.exact(1, arguments, Exp.name)
+  return new Expr({ exp: wrap(expr) })
+}
+
+// src/query/FaunaFunction.js
+function FaunaFunction(name2, scope) {
+  arity.between(1, 2, arguments, FaunaFunction.name)
+  switch (arguments.length) {
+    case 1:
+      return new Expr({ function: wrap(name2) })
+    case 2:
+      return new Expr({ function: wrap(name2), scope: wrap(scope) })
+  }
+}
+
+// src/query/FaunaIndex.js
+function FaunaIndex(name2, scope) {
+  arity.between(1, 2, arguments, FaunaIndex.name)
+  switch (arguments.length) {
+    case 1:
+      return new Expr({ index: wrap(name2) })
+    case 2:
+      return new Expr({ index: wrap(name2), scope: wrap(scope) })
+  }
+}
+
+// src/query/FaunaObject.js
+var FaunaObject = function(fields) {
+  arity.exact(1, arguments, FaunaObject.name)
+  return new Expr({ object: wrapValues(fields) })
+}
+var FaunaObject_default = FaunaObject
 
 // src/query/Filter.js
 function Filter(collection, lambda_expr) {
@@ -1498,10 +2159,517 @@ function Filter(collection, lambda_expr) {
   return new Expr({ filter: wrap(lambda_expr), collection: wrap(collection) })
 }
 
+// src/query/FindStr.js
+function FindStr(value, find, start) {
+  arity.between(2, 3, arguments, FindStr.name)
+  start = defaults(start, null)
+  return new Expr(
+    params({ findstr: wrap(value), find: wrap(find) }, { start: wrap(start) })
+  )
+}
+
+// src/query/FindStrRegex.js
+function FindStrRegex(value, pattern, start, numResults) {
+  arity.between(2, 4, arguments, FindStrRegex.name)
+  start = defaults(start, null)
+  return new Expr(
+    params(
+      { findstrregex: wrap(value), pattern: wrap(pattern) },
+      { start: wrap(start), num_results: wrap(numResults) }
+    )
+  )
+}
+
+// src/query/Floor.js
+function Floor(expr) {
+  arity.exact(1, arguments, Floor.name)
+  return new Expr({ floor: wrap(expr) })
+}
+
+// src/query/Foreach.js
+function Foreach(collection, lambda_expr) {
+  arity.exact(2, arguments, Foreach.name)
+  return new Expr({ foreach: wrap(lambda_expr), collection: wrap(collection) })
+}
+
+// src/query/Format.js
+function Format(string) {
+  arity.min(1, arguments, Format.name)
+  var args = argsToArray(arguments)
+  args.shift()
+  return new Expr({ format: wrap(string), values: wrap(varargs(args)) })
+}
+
+// src/query/Functions.js
+function Functions(scope) {
+  arity.max(1, arguments, Functions.name)
+  scope = defaults(scope, null)
+  return new Expr({ functions: wrap(scope) })
+}
+
+// src/query/Get.js
+function Get(ref, ts) {
+  arity.between(1, 2, arguments, Get.name)
+  ts = defaults(ts, null)
+  return new Expr(params({ get: wrap(ref) }, { ts: wrap(ts) }))
+}
+
+// src/query/GT.js
+function GT() {
+  arity.min(1, arguments, GT.name)
+  return new Expr({ gt: wrap(varargs(arguments)) })
+}
+
+// src/query/GTE.js
+function GTE() {
+  arity.min(1, arguments, GTE.name)
+  return new Expr({ gte: wrap(varargs(arguments)) })
+}
+
+// src/query/HasCurrentIdentity.js
+function HasCurrentIdentity() {
+  arity.exact(0, arguments, HasCurrentIdentity.name)
+  return new Expr({ has_current_identity: null })
+}
+
+// src/query/HasCurrentToken.js
+function HasCurrentToken() {
+  arity.exact(0, arguments, HasCurrentToken.name)
+  return new Expr({ has_current_token: null })
+}
+
+// src/query/HasIdentity.js
+var HasIdentity_default = deprecate(function() {
+  arity.exact(0, arguments, 'HasIdentity')
+  return new Expr({ has_identity: null })
+}, 'HasIdentity() is deprecated, use HasCurrentIdentity() instead')
+
+// src/query/Hour.js
+function Hour(expr) {
+  arity.exact(1, arguments, Hour.name)
+  return new Expr({ hour: wrap(expr) })
+}
+
+// src/query/Hypot.js
+function Hypot(value, side) {
+  arity.min(1, arguments, Hypot.name)
+  side = defaults(side, null)
+  return new Expr(params({ hypot: wrap(value) }, { b: wrap(side) }))
+}
+
+// src/query/Identify.js
+function Identify(ref, password) {
+  arity.exact(2, arguments, Identify.name)
+  return new Expr({ identify: wrap(ref), password: wrap(password) })
+}
+
+// src/query/Identity.js
+var Identity_default = deprecate(function() {
+  arity.exact(0, arguments, 'Identity')
+  return new Expr({ identity: null })
+}, 'Identity() is deprecated, use CurrentIdentity() instead')
+
+// src/query/If.js
+function If(condition, then, _else) {
+  arity.exact(3, arguments, If.name)
+  return new Expr({ if: wrap(condition), then: wrap(then), else: wrap(_else) })
+}
+
+// src/query/Indexes.js
+function Indexes(scope) {
+  arity.max(1, arguments, Indexes.name)
+  scope = defaults(scope, null)
+  return new Expr({ indexes: wrap(scope) })
+}
+
+// src/query/Insert.js
+function Insert(ref, ts, action, params2) {
+  arity.exact(4, arguments, Insert.name)
+  return new Expr({
+    insert: wrap(ref),
+    ts: wrap(ts),
+    action: wrap(action),
+    params: wrap(params2),
+  })
+}
+
+// src/query/Intersection.js
+function Intersection() {
+  arity.min(1, arguments, Intersection.name)
+  return new Expr({ intersection: wrap(varargs(arguments)) })
+}
+
+// src/query/IsArray.js
+function IsArray(expr) {
+  arity.exact(1, arguments, IsArray.name)
+  return new Expr({ is_array: wrap(expr) })
+}
+
+// src/query/IsBoolean.js
+function IsBoolean(expr) {
+  arity.exact(1, arguments, IsBoolean.name)
+  return new Expr({ is_boolean: wrap(expr) })
+}
+
+// src/query/IsBytes.js
+function IsBytes(expr) {
+  arity.exact(1, arguments, IsBytes.name)
+  return new Expr({ is_bytes: wrap(expr) })
+}
+
+// src/query/IsCollection.js
+function IsCollection(expr) {
+  arity.exact(1, arguments, IsCollection.name)
+  return new Expr({ is_collection: wrap(expr) })
+}
+
+// src/query/IsCredentials.js
+function IsCredentials(expr) {
+  arity.exact(1, arguments, IsCredentials.name)
+  return new Expr({ is_credentials: wrap(expr) })
+}
+
+// src/query/IsDatabase.js
+function IsDatabase(expr) {
+  arity.exact(1, arguments, IsDatabase.name)
+  return new Expr({ is_database: wrap(expr) })
+}
+
+// src/query/IsDate.js
+function IsDate(expr) {
+  arity.exact(1, arguments, IsDate.name)
+  return new Expr({ is_date: wrap(expr) })
+}
+
+// src/query/IsDoc.js
+function IsDoc(expr) {
+  arity.exact(1, arguments, IsDoc.name)
+  return new Expr({ is_doc: wrap(expr) })
+}
+
+// src/query/IsDouble.js
+function IsDouble(expr) {
+  arity.exact(1, arguments, IsDouble.name)
+  return new Expr({ is_double: wrap(expr) })
+}
+
+// src/query/IsEmpty.js
+function IsEmpty(collection) {
+  arity.exact(1, arguments, IsEmpty.name)
+  return new Expr({ is_empty: wrap(collection) })
+}
+
+// src/query/IsFunction.js
+function IsFunction(expr) {
+  arity.exact(1, arguments, IsFunction.name)
+  return new Expr({ is_function: wrap(expr) })
+}
+
+// src/query/IsIndex.js
+function IsIndex(expr) {
+  arity.exact(1, arguments, IsIndex.name)
+  return new Expr({ is_index: wrap(expr) })
+}
+
+// src/query/IsInteger.js
+function IsInteger(expr) {
+  arity.exact(1, arguments, IsInteger.name)
+  return new Expr({ is_integer: wrap(expr) })
+}
+
+// src/query/IsKey.js
+function IsKey(expr) {
+  arity.exact(1, arguments, IsKey.name)
+  return new Expr({ is_key: wrap(expr) })
+}
+
+// src/query/IsLambda.js
+function IsLambda(expr) {
+  arity.exact(1, arguments, IsLambda.name)
+  return new Expr({ is_lambda: wrap(expr) })
+}
+
+// src/query/IsNonEmpty.js
+function IsNonEmpty(collection) {
+  arity.exact(1, arguments, IsNonEmpty.name)
+  return new Expr({ is_nonempty: wrap(collection) })
+}
+
+// src/query/IsNull.js
+function IsNull(expr) {
+  arity.exact(1, arguments, IsNull.name)
+  return new Expr({ is_null: wrap(expr) })
+}
+
+// src/query/IsNumber.js
+function IsNumber(expr) {
+  arity.exact(1, arguments, IsNumber.name)
+  return new Expr({ is_number: wrap(expr) })
+}
+
+// src/query/IsObject.js
+function IsObject(expr) {
+  arity.exact(1, arguments, IsObject.name)
+  return new Expr({ is_object: wrap(expr) })
+}
+
+// src/query/IsRef.js
+function IsRef(expr) {
+  arity.exact(1, arguments, IsRef.name)
+  return new Expr({ is_ref: wrap(expr) })
+}
+
+// src/query/IsRole.js
+function IsRole(expr) {
+  arity.exact(1, arguments, IsRole.name)
+  return new Expr({ is_role: wrap(expr) })
+}
+
+// src/query/IsSet.js
+function IsSet(expr) {
+  arity.exact(1, arguments, IsSet.name)
+  return new Expr({ is_set: wrap(expr) })
+}
+
+// src/query/IsString.js
+function IsString(expr) {
+  arity.exact(1, arguments, IsString.name)
+  return new Expr({ is_string: wrap(expr) })
+}
+
+// src/query/IsTimestamp.js
+function IsTimestamp(expr) {
+  arity.exact(1, arguments, IsTimestamp.name)
+  return new Expr({ is_timestamp: wrap(expr) })
+}
+
+// src/query/IsToken.js
+function IsToken(expr) {
+  arity.exact(1, arguments, IsToken.name)
+  return new Expr({ is_token: wrap(expr) })
+}
+
+// src/query/Join.js
+function Join(source, target) {
+  arity.exact(2, arguments, Join.name)
+  return new Expr({ join: wrap(source), with: wrap(target) })
+}
+
+// src/query/KeyFromSecret.js
+function KeyFromSecret(secret) {
+  arity.exact(1, arguments, KeyFromSecret.name)
+  return new Expr({ key_from_secret: wrap(secret) })
+}
+
+// src/query/Keys.js
+function Keys(scope) {
+  arity.max(1, arguments, Keys.name)
+  scope = defaults(scope, null)
+  return new Expr({ keys: wrap(scope) })
+}
+
+// src/query/Length.js
+function Length(value) {
+  arity.exact(1, arguments, Length.name)
+  return new Expr({ length: wrap(value) })
+}
+
+// src/query/Let.js
+function Let(vars, expr) {
+  arity.exact(2, arguments, Let.name)
+  var bindings = []
+  if (Array.isArray(vars)) {
+    bindings = vars.map(function(item) {
+      return wrapValues(item)
+    })
+  } else {
+    bindings = Object.keys(vars)
+      .filter(function(k) {
+        return vars[k] !== void 0
+      })
+      .map(function(k) {
+        var b = {}
+        b[k] = wrap(vars[k])
+        return b
+      })
+  }
+  if (typeof expr === 'function') {
+    if (Array.isArray(vars)) {
+      var expr_vars = []
+      vars.forEach(function(item) {
+        Object.keys(item).forEach(function(name2) {
+          expr_vars.push(Var(name2))
+        })
+      })
+      expr = expr.apply(null, expr_vars)
+    } else {
+      expr = expr.apply(
+        null,
+        Object.keys(vars).map(function(name2) {
+          return Var(name2)
+        })
+      )
+    }
+  }
+  return new Expr({ let: bindings, in: wrap(expr) })
+}
+
+// src/query/Ln.js
+function Ln(expr) {
+  arity.exact(1, arguments, Ln.name)
+  return new Expr({ ln: wrap(expr) })
+}
+
+// src/query/Log.js
+function Log(expr) {
+  arity.exact(1, arguments, Log.name)
+  return new Expr({ log: wrap(expr) })
+}
+
+// src/query/Login.js
+function Login(ref, params2) {
+  arity.exact(2, arguments, Login.name)
+  return new Expr({ login: wrap(ref), params: wrap(params2) })
+}
+
+// src/query/Logout.js
+function Logout(delete_tokens) {
+  arity.exact(1, arguments, Logout.name)
+  return new Expr({ logout: wrap(delete_tokens) })
+}
+
+// src/query/LowerCase.js
+function LowerCase(value) {
+  arity.exact(1, arguments, LowerCase.name)
+  return new Expr({ lowercase: wrap(value) })
+}
+
+// src/query/LT.js
+function LT() {
+  arity.min(1, arguments, LT.name)
+  return new Expr({ lt: wrap(varargs(arguments)) })
+}
+
+// src/query/LTE.js
+function LTE() {
+  arity.min(1, arguments, LTE.name)
+  return new Expr({ lte: wrap(varargs(arguments)) })
+}
+
+// src/query/LTrim.js
+function LTrim(value) {
+  arity.exact(1, arguments, LTrim.name)
+  return new Expr({ ltrim: wrap(value) })
+}
+
 // src/query/Map.js
 function Map2(collection, lambda_expr) {
   arity.exact(2, arguments, Map2.name)
   return new Expr({ map: wrap(lambda_expr), collection: wrap(collection) })
+}
+
+// src/query/Match.js
+function Match(index) {
+  arity.min(1, arguments, Match.name)
+  var args = argsToArray(arguments)
+  args.shift()
+  return new Expr({ match: wrap(index), terms: wrap(varargs(args)) })
+}
+
+// src/query/Max.js
+function Max() {
+  arity.min(1, arguments, Max.name)
+  return new Expr({ max: wrap(varargs(arguments)) })
+}
+
+// src/query/Mean.js
+function Mean(collection) {
+  arity.exact(1, arguments, Mean.name)
+  return new Expr({ mean: wrap(collection) })
+}
+
+// src/query/Merge.js
+function Merge(merge, _with, lambda) {
+  arity.between(2, 3, arguments, Merge.name)
+  return new Expr(
+    params({ merge: wrap(merge), with: wrap(_with) }, { lambda: wrap(lambda) })
+  )
+}
+
+// src/query/Min.js
+function Min() {
+  arity.min(1, arguments, Min.name)
+  return new Expr({ min: wrap(varargs(arguments)) })
+}
+
+// src/query/Minute.js
+function Minute(expr) {
+  arity.exact(1, arguments, Minute.name)
+  return new Expr({ minute: wrap(expr) })
+}
+
+// src/query/Modulo.js
+function Modulo() {
+  arity.min(1, arguments, Modulo.name)
+  return new Expr({ modulo: wrap(varargs(arguments)) })
+}
+
+// src/query/Month.js
+function Month(expr) {
+  arity.exact(1, arguments, Month.name)
+  return new Expr({ month: wrap(expr) })
+}
+
+// src/query/MoveDatabase.js
+function MoveDatabase(from, to) {
+  arity.exact(2, arguments, MoveDatabase.name)
+  return new Expr({ move_database: wrap(from), to: wrap(to) })
+}
+
+// src/query/Multiply.js
+function Multiply() {
+  arity.min(1, arguments, Multiply.name)
+  return new Expr({ multiply: wrap(varargs(arguments)) })
+}
+
+// src/query/NewId.js
+function NewId() {
+  arity.exact(0, arguments, NewId.name)
+  return new Expr({ new_id: null })
+}
+
+// src/query/NextId.js
+var NextId_default = deprecate(function() {
+  arity.exact(0, arguments, 'NextId')
+  return new Expr({ next_id: null })
+}, 'NextId() is deprecated, use NewId() instead')
+
+// src/query/NGram.js
+function NGram(terms, min, max) {
+  arity.between(1, 3, arguments, NGram.name)
+  min = defaults(min, null)
+  max = defaults(max, null)
+  return new Expr(
+    params({ ngram: wrap(terms) }, { min: wrap(min), max: wrap(max) })
+  )
+}
+
+// src/query/Not.js
+function Not(boolean) {
+  arity.exact(1, arguments, Not.name)
+  return new Expr({ not: wrap(boolean) })
+}
+
+// src/query/Now.js
+function Now() {
+  arity.exact(0, arguments, Now.name)
+  return new Expr({ now: wrap(null) })
+}
+
+// src/query/Or.js
+function Or() {
+  arity.min(1, arguments, Or.name)
+  return new Expr({ or: wrap(varargs(arguments)) })
 }
 
 // src/query/Paginate.js
@@ -1511,11 +2679,410 @@ function Paginate(set, opts) {
   return new Expr(Object.assign({ paginate: wrap(set) }, wrapValues(opts)))
 }
 
+// src/query/Pow.js
+function Pow(value, exponent) {
+  arity.min(1, arguments, Pow.name)
+  exponent = defaults(exponent, null)
+  return new Expr(params({ pow: wrap(value) }, { exp: wrap(exponent) }))
+}
+
+// src/query/Prepend.js
+function Prepend(elements, collection) {
+  arity.exact(2, arguments, Prepend.name)
+  return new Expr({ prepend: wrap(elements), collection: wrap(collection) })
+}
+
+// src/query/Query.js
+function Query2(lambda) {
+  arity.exact(1, arguments, Query2.name)
+  return new Expr({ query: wrap(lambda) })
+}
+
+// src/query/Radians.js
+function Radians(expr) {
+  arity.exact(1, arguments, Radians.name)
+  return new Expr({ radians: wrap(expr) })
+}
+
+// src/query/Range.js
+function Range(set, from, to) {
+  arity.exact(3, arguments, Range.name)
+  return new Expr({ range: wrap(set), from: wrap(from), to: wrap(to) })
+}
+
+// src/query/Reduce.js
+function Reduce(lambda, initial, collection) {
+  arity.exact(3, arguments, Reduce.name)
+  return new Expr({
+    reduce: wrap(lambda),
+    initial: wrap(initial),
+    collection: wrap(collection),
+  })
+}
+
+// src/query/Ref.js
+function Ref2() {
+  arity.between(1, 2, arguments, Ref2.name)
+  switch (arguments.length) {
+    case 1:
+      return new Expr({ '@ref': wrap(arguments[0]) })
+    case 2:
+      return new Expr({ ref: wrap(arguments[0]), id: wrap(arguments[1]) })
+  }
+}
+
+// src/query/RegexEscape.js
+function RegexEscape(value) {
+  arity.exact(1, arguments, RegexEscape.name)
+  return new Expr({ regexescape: wrap(value) })
+}
+
+// src/query/Remove.js
+function Remove(ref, ts, action) {
+  arity.exact(3, arguments, Remove.name)
+  return new Expr({ remove: wrap(ref), ts: wrap(ts), action: wrap(action) })
+}
+
+// src/query/Repeat.js
+function Repeat(value, number) {
+  arity.between(1, 2, arguments, Repeat.name)
+  number = defaults(number, null)
+  return new Expr(params({ repeat: wrap(value) }, { number: wrap(number) }))
+}
+
+// src/query/Replace.js
+function Replace(ref, params2) {
+  arity.exact(2, arguments, Replace.name)
+  return new Expr({ replace: wrap(ref), params: wrap(params2) })
+}
+
+// src/query/ReplaceStr.js
+function ReplaceStr(value, find, replace) {
+  arity.exact(3, arguments, ReplaceStr.name)
+  return new Expr({
+    replacestr: wrap(value),
+    find: wrap(find),
+    replace: wrap(replace),
+  })
+}
+
+// src/query/ReplaceStrRegex.js
+function ReplaceStrRegex(value, pattern, replace, first) {
+  arity.between(3, 4, arguments, ReplaceStrRegex.name)
+  first = defaults(first, null)
+  return new Expr(
+    params(
+      {
+        replacestrregex: wrap(value),
+        pattern: wrap(pattern),
+        replace: wrap(replace),
+      },
+      { first: wrap(first) }
+    )
+  )
+}
+
+// src/query/Reverse.js
+function Reverse(expr) {
+  arity.exact(1, arguments, Reverse.name)
+  return new Expr({ reverse: wrap(expr) })
+}
+
+// src/query/Role.js
+function Role(name2, scope) {
+  arity.between(1, 2, arguments, Role.name)
+  scope = defaults(scope, null)
+  return new Expr(params({ role: wrap(name2) }, { scope: wrap(scope) }))
+}
+
+// src/query/Roles.js
+function Roles(scope) {
+  arity.max(1, arguments, Roles.name)
+  scope = defaults(scope, null)
+  return new Expr({ roles: wrap(scope) })
+}
+
+// src/query/Round.js
+function Round(value, precision) {
+  arity.min(1, arguments, Round.name)
+  precision = defaults(precision, null)
+  return new Expr(
+    params({ round: wrap(value) }, { precision: wrap(precision) })
+  )
+}
+
+// src/query/RTrim.js
+function RTrim(value) {
+  arity.exact(1, arguments, RTrim.name)
+  return new Expr({ rtrim: wrap(value) })
+}
+
+// src/query/Second.js
+function Second(expr) {
+  arity.exact(1, arguments, Second.name)
+  return new Expr({ second: wrap(expr) })
+}
+
+// src/query/Select.js
+function Select(path, from, _default) {
+  arity.between(2, 3, arguments, Select.name)
+  var exprObj = { select: wrap(path), from: wrap(from) }
+  if (_default !== void 0) {
+    exprObj.default = wrap(_default)
+  }
+  return new Expr(exprObj)
+}
+
+// src/query/SelectAll.js
+var SelectAll_default = deprecate(function(path, from) {
+  arity.exact(2, arguments, 'SelectAll')
+  return new Expr({ select_all: wrap(path), from: wrap(from) })
+}, 'SelectAll() is deprecated. Avoid use.')
+
+// src/query/Sign.js
+function Sign(expr) {
+  arity.exact(1, arguments, Sign.name)
+  return new Expr({ sign: wrap(expr) })
+}
+
+// src/query/Sin.js
+function Sin(expr) {
+  arity.exact(1, arguments, Sin.name)
+  return new Expr({ sin: wrap(expr) })
+}
+
+// src/query/Singleton.js
+function Singleton(ref) {
+  arity.exact(1, arguments, Singleton.name)
+  return new Expr({ singleton: wrap(ref) })
+}
+
+// src/query/Sinh.js
+function Sinh(expr) {
+  arity.exact(1, arguments, Sinh.name)
+  return new Expr({ sinh: wrap(expr) })
+}
+
+// src/query/Space.js
+function Space(num) {
+  arity.exact(1, arguments, Space.name)
+  return new Expr({ space: wrap(num) })
+}
+
+// src/query/Sqrt.js
+function Sqrt(expr) {
+  arity.exact(1, arguments, Sqrt.name)
+  return new Expr({ sqrt: wrap(expr) })
+}
+
+// src/query/StartsWith.js
+function StartsWith(value, search) {
+  arity.exact(2, arguments, StartsWith.name)
+  return new Expr({ startswith: wrap(value), search: wrap(search) })
+}
+
+// src/query/SubString.js
+function SubString(value, start, length) {
+  arity.between(1, 3, arguments, SubString.name)
+  start = defaults(start, null)
+  length = defaults(length, null)
+  return new Expr(
+    params(
+      { substring: wrap(value) },
+      { start: wrap(start), length: wrap(length) }
+    )
+  )
+}
+
+// src/query/Subtract.js
+function Subtract() {
+  arity.min(1, arguments, Subtract.name)
+  return new Expr({ subtract: wrap(varargs(arguments)) })
+}
+
+// src/query/Sum.js
+function Sum(collection) {
+  arity.exact(1, arguments, Sum.name)
+  return new Expr({ sum: wrap(collection) })
+}
+
+// src/query/Take.js
+function Take(number, collection) {
+  arity.exact(2, arguments, Take.name)
+  return new Expr({ take: wrap(number), collection: wrap(collection) })
+}
+
+// src/query/Tan.js
+function Tan(expr) {
+  arity.exact(1, arguments, Tan.name)
+  return new Expr({ tan: wrap(expr) })
+}
+
+// src/query/Tanh.js
+function Tanh(expr) {
+  arity.exact(1, arguments, Tanh.name)
+  return new Expr({ tanh: wrap(expr) })
+}
+
+// src/query/Time.js
+function Time(string) {
+  arity.exact(1, arguments, Time.name)
+  return new Expr({ time: wrap(string) })
+}
+
+// src/query/TimeAdd.js
+function TimeAdd(base, offset, unit) {
+  arity.exact(3, arguments, TimeAdd.name)
+  return new Expr({
+    time_add: wrap(base),
+    offset: wrap(offset),
+    unit: wrap(unit),
+  })
+}
+
+// src/query/TimeDiff.js
+function TimeDiff(start, finish, unit) {
+  arity.exact(3, arguments, TimeDiff.name)
+  return new Expr({
+    time_diff: wrap(start),
+    other: wrap(finish),
+    unit: wrap(unit),
+  })
+}
+
+// src/query/TimeSubtract.js
+function TimeSubtract(base, offset, unit) {
+  arity.exact(3, arguments, TimeSubtract.name)
+  return new Expr({
+    time_subtract: wrap(base),
+    offset: wrap(offset),
+    unit: wrap(unit),
+  })
+}
+
+// src/query/TitleCase.js
+function TitleCase(value) {
+  arity.exact(1, arguments, TitleCase.name)
+  return new Expr({ titlecase: wrap(value) })
+}
+
+// src/query/ToArray.js
+function ToArray(expr) {
+  arity.exact(1, arguments, ToArray.name)
+  return new Expr({ to_array: wrap(expr) })
+}
+
+// src/query/ToDate.js
+function ToDate(expr) {
+  arity.exact(1, arguments, ToDate.name)
+  return new Expr({ to_date: wrap(expr) })
+}
+
+// src/query/ToDouble.js
+function ToDouble(expr) {
+  arity.exact(1, arguments, ToDouble.name)
+  return new Expr({ to_double: wrap(expr) })
+}
+
+// src/query/ToInteger.js
+function ToInteger(expr) {
+  arity.exact(1, arguments, ToInteger.name)
+  return new Expr({ to_integer: wrap(expr) })
+}
+
+// src/query/Tokens.js
+function Tokens(scope) {
+  arity.max(1, arguments, Tokens.name)
+  scope = defaults(scope, null)
+  return new Expr({ tokens: wrap(scope) })
+}
+
+// src/query/ToMicros.js
+function ToMicros(expr) {
+  arity.exact(1, arguments, ToMicros.name)
+  return new Expr({ to_micros: wrap(expr) })
+}
+
+// src/query/ToMillis.js
+function ToMillis(expr) {
+  arity.exact(1, arguments, ToMillis.name)
+  return new Expr({ to_millis: wrap(expr) })
+}
+
+// src/query/ToNumber.js
+function ToNumber(expr) {
+  arity.exact(1, arguments, ToNumber.name)
+  return new Expr({ to_number: wrap(expr) })
+}
+
+// src/query/ToObject.js
+function ToObject(expr) {
+  arity.exact(1, arguments, ToObject.name)
+  return new Expr({ to_object: wrap(expr) })
+}
+
+// src/query/ToSeconds.js
+function ToSeconds(expr) {
+  arity.exact(1, arguments, ToSeconds.name)
+  return new Expr({ to_seconds: wrap(expr) })
+}
+
+// src/query/ToString.js
+function ToString(expr) {
+  arity.exact(1, arguments, ToString.name)
+  return new Expr({ to_string: wrap(expr) })
+}
+
+// src/query/ToTime.js
+function ToTime(expr) {
+  arity.exact(1, arguments, ToTime.name)
+  return new Expr({ to_time: wrap(expr) })
+}
+
+// src/query/Trim.js
+function Trim(value) {
+  arity.exact(1, arguments, Trim.name)
+  return new Expr({ trim: wrap(value) })
+}
+
+// src/query/Trunc.js
+function Trunc(value, precision) {
+  arity.min(1, arguments, Trunc.name)
+  precision = defaults(precision, null)
+  return new Expr(
+    params({ trunc: wrap(value) }, { precision: wrap(precision) })
+  )
+}
+
+// src/query/Union.js
+function Union() {
+  arity.min(1, arguments, Union.name)
+  return new Expr({ union: wrap(varargs(arguments)) })
+}
+
+// src/query/Update.js
+function Update(ref, params2) {
+  arity.exact(2, arguments, Update.name)
+  return new Expr({ update: wrap(ref), params: wrap(params2) })
+}
+
+// src/query/UpperCase.js
+function UpperCase(value) {
+  arity.exact(1, arguments, UpperCase.name)
+  return new Expr({ uppercase: wrap(value) })
+}
+
+// src/query/Year.js
+function Year(expr) {
+  arity.exact(1, arguments, Year.name)
+  return new Expr({ year: wrap(expr) })
+}
+
 // src/PageHelper.js
 ;('use strict')
-function PageHelper(client, set, params, options) {
-  if (params === void 0) {
-    params = {}
+function PageHelper(client, set, params2, options) {
+  if (params2 === void 0) {
+    params2 = {}
   }
   if (options === void 0) {
     options = {}
@@ -1524,7 +3091,7 @@ function PageHelper(client, set, params, options) {
   this.params = {}
   this.before = void 0
   this.after = void 0
-  Object.assign(this.params, params)
+  Object.assign(this.params, params2)
   var cursorParams = this.params.cursor || this.params
   if ('before' in cursorParams) {
     this.before = cursorParams.before
@@ -1676,7 +3243,7 @@ function FetchAdapter(options) {
   options = options || {}
   this.type = 'fetch'
   this._closed = false
-  this._fetch = resolveFetch(options.fetch)
+  this._fetch = options.fetch || fetch
   this._pendingRequests = new Map()
 }
 FetchAdapter.prototype.execute = function(options) {
@@ -1994,10 +3561,10 @@ Client.apiVersion = package_default.apiVersion
 Client.prototype.query = function(expression, options) {
   return this._execute('POST', '', wrap(expression), null, options)
 }
-Client.prototype.paginate = function(expression, params, options) {
-  params = defaults(params, {})
+Client.prototype.paginate = function(expression, params2, options) {
+  params2 = defaults(params2, {})
   options = defaults(options, {})
-  return new PageHelper(this, expression, params, options)
+  return new PageHelper(this, expression, params2, options)
 }
 Client.prototype.ping = function(scope, timeout) {
   return this._execute('GET', 'ping', null, { scope, timeout })
@@ -2164,6 +3731,7 @@ export {
   errorClassFactory,
   getQueryError,
   logger,
+  query_exports as query,
   setDeprecationHandler,
   showRequestResult,
 }

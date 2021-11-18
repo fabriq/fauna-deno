@@ -5,7 +5,7 @@ import {
   StreamsNotSupported,
   TimeoutError,
 } from '../errors'
-import { formatUrl, resolveFetch } from '../_util'
+import { formatUrl } from '../_util'
 
 /**
  * Http client adapter built around fetch API.
@@ -33,7 +33,7 @@ export default function FetchAdapter(options) {
    * @private
    */
   this._closed = false
-  this._fetch = resolveFetch(options.fetch)
+  this._fetch = options.fetch || fetch
   /**
    * A map that tracks ongoing requests to be able to cancel them when
    * the .close method is called.

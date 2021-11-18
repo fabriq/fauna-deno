@@ -14,25 +14,7 @@ const commonPkgFields = {
   browser: pkg.browser,
 }
 
-// rewrite type="modules" for esm5 to support NodeJS
-writePkg({
-  rootPath: 'esm5',
-  pkgManifest: {
-    type: 'module',
-  },
-})
-
-const rootAliases = [
-  {
-    alias: 'query',
-    main: 'query/index.js',
-    aliasForFiles: true,
-  },
-  {
-    alias: 'stream',
-    main: 'stream.js',
-  },
-]
+const rootAliases = []
 
 rootAliases.forEach(({ alias, aliasForFiles, main }) => {
   ensureDir(alias)

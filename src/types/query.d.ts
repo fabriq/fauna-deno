@@ -28,7 +28,7 @@ export function If(
 /** @public */
 export function Do(...args: ExprArg[]): Expr
 /** @public */
-export function Object(fields: ExprArg): Expr
+export function FaunaObject(fields: ExprArg): Expr
 
 /** @public */
 export function Lambda(f: LambdaType): Expr
@@ -309,13 +309,13 @@ export function NewId(): Expr
 /** @public */
 export function Database(name: ExprArg, scope?: ExprArg): Expr
 /** @public */
-export function Index(name: ExprArg, scope?: ExprArg): Expr
+export function FaunaIndex(name: ExprArg, scope?: ExprArg): Expr
 /** @public */
 export function Class(name: ExprArg, scope?: ExprArg): Expr
 /** @public */
 export function Collection(name: ExprArg, scope?: ExprArg): Expr
 /** @public */
-export function Function(name: ExprArg, scope?: ExprArg): Expr
+export function FaunaFunction(name: ExprArg, scope?: ExprArg): Expr
 /** @public */
 export function Role(name: ExprArg, scope?: ExprArg): Expr
 /** @public */
