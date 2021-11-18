@@ -1,14 +1,12 @@
 'use strict'
 
 import * as base64 from 'base64-js'
-import { inspect } from 'util'
 import deprecate from './util-deprecate'
 import { InvalidValue } from './errors'
 import Expr from './Expr'
 import { checkInstanceHasProperty, inherits } from './_util'
 
-const customInspect = inspect && inspect.custom
-const stringify = inspect ? inspect : JSON.stringify
+const stringify = JSON.stringify
 
 /**
  * FaunaDB value types. Generally, these collections do not need to be instantiated
@@ -372,8 +370,4 @@ Query.prototype.toJSON = function() {
 function wrapToString(type, fn) {
   type.prototype.toString = fn
   type.prototype.inspect = fn
-
-  if (customInspect) {
-    type.prototype[customInspect] = fn
-  }
 }

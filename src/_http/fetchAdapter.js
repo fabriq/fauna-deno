@@ -1,14 +1,11 @@
 'use strict'
-import 'abort-controller/polyfill'
-import http from 'http'
-import https from 'https'
 import {
   AbortError,
   ClientClosed,
   StreamsNotSupported,
   TimeoutError,
 } from '../errors'
-import { formatUrl, isNodeEnv, resolveFetch } from '../_util'
+import { formatUrl, resolveFetch } from '../_util'
 
 /**
  * Http client adapter built around fetch API.
@@ -45,12 +42,6 @@ export default function FetchAdapter(options) {
    * @private
    */
   this._pendingRequests = new Map()
-
-  if (isNodeEnv() && options.keepAlive) {
-    this._keepAliveEnabledAgent = new (options.isHttps ? https : http).Agent({
-      keepAlive: true,
-    })
-  }
 }
 
 /**
@@ -250,19 +241,6 @@ function attachStreamConsumer(response, consumer, onComplete) {
   var onError = function(error) {
     onComplete()
     consumer.onError(remapIfAbortError(error))
-  }
-
-  if (isNodeEnv()) {
-    response.body
-      .on('error', onError)
-      .on('data', consumer.onData)
-      .on('end', function() {
-        onComplete()
-        // To simulate how browsers behave in case of "end" event.
-        consumer.onError(new TypeError('network error'))
-      })
-
-    return
   }
 
   // ATTENTION: The following code is meant to run in browsers and is not

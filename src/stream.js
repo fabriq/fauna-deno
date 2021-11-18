@@ -11,7 +11,6 @@
 // visibility control. However, DO NOT change any internal state from outside of
 // its context as it'd most certainly lead to errors.
 
-import 'abort-controller/polyfill'
 import { AbortError, StreamErrorEvent } from './errors'
 import { wrap } from './query/common'
 import Get from './query/Get'

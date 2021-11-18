@@ -3,8 +3,6 @@ import packageJson from '../../package.json'
 import {
   getBrowserDetails,
   getBrowserOsDetails,
-  getNodeRuntimeEnv,
-  isNodeEnv,
   removeNullAndUndefinedValues,
 } from '../_util'
 import FetchAdapter from './fetchAdapter'
@@ -142,11 +140,9 @@ function getDefaultHeaders() {
   }
 
   try {
-    if (isNodeEnv()) {
-      driverEnv.runtime = ['nodejs', process.version].join('-')
-      driverEnv.env = getNodeRuntimeEnv()
-      var os = require('os')
-      driverEnv.os = [os.platform(), os.release()].join('-')
+    if (typeof Deno !== undefined) {
+      driverEnv.runtime = 'Deno'
+      driverEnv.env = 'Deno'
     } else if (isServiceWorker) {
       driverEnv.runtime = 'Service Worker'
     } else {
@@ -160,11 +156,5 @@ function getDefaultHeaders() {
     'X-FaunaDB-API-Version': packageJson.apiVersion,
   }
 
-  // TODO: api cors must be enabled to accept header X-Driver-Env
-  if (isNodeEnv()) {
-    headers['X-Driver-Env'] = Object.keys(driverEnv)
-      .map(key => [key, driverEnv[key].toLowerCase()].join('='))
-      .join('; ')
-  }
   return headers
 }

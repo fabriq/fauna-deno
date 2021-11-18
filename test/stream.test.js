@@ -289,7 +289,6 @@ describe('StreamAPI', () => {
     })
 
     test('filter buffered events prior to snapshot', done => {
-      let fetch = require('cross-fetch')
       let buffering = false
 
       // Allow the test to inject an event between stream subscription and the

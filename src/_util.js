@@ -1,9 +1,6 @@
 /*global globalThis*/
 'use strict'
 
-import boxen from 'boxen'
-import chalk from 'chalk'
-import crossFetch from 'cross-fetch'
 import packageJson from '../package.json'
 
 var crossGlobal =
@@ -50,19 +47,6 @@ export function inherits(ctor, superCtor) {
       configurable: true,
     },
   })
-}
-
-/**
- * Determines if the current environment is a NodeJS environment.
- * @private
- */
-export function isNodeEnv() {
-  return (
-    typeof window === 'undefined' &&
-    typeof process !== 'undefined' &&
-    process.versions != null &&
-    process.versions.node != null
-  )
 }
 
 /**
@@ -495,7 +479,7 @@ export function mergeObjects(obj1, obj2) {
 /**
  * Resolves which Fetch API compatible function to use. If an override is
  * provided, returns the override. If no override and the global (window) has
- * "fetch" property, return the native fetch. Otherwise returns the cross-fetch polyfill.
+ * "fetch" property, return the native fetch. Otherwise, throws.
  *
  * @param {?function} fetchOverride An Fetch API compatible function to use.
  * @returns {function} A Fetch API compatible function.
@@ -511,27 +495,25 @@ export function resolveFetch(fetchOverride) {
     return global.fetch.bind(global)
   }
 
-  return crossFetch
+  throw new Error('No fetch in available')
 }
 
 export function notifyAboutNewVersion() {
   var isNotified
   const checkAndNotify = checkNewVersion => {
-    if (!isNodeEnv() || isNotified || !checkNewVersion) return
+    if (true || isNotified || !checkNewVersion) return
     function onResponse(latestVersion) {
       var isNewVersionAvailable = latestVersion > packageJson.version
       if (isNewVersionAvailable) {
         console.info(
-          boxen(
-            'New ' +
-              packageJson.name +
-              ' version available ' +
-              chalk.dim(packageJson.version) +
-              chalk.reset(' → ') +
-              chalk.green(latestVersion) +
-              `\nChangelog: https://github.com/fauna/faunadb-js/blob/main/CHANGELOG.md`,
-            { padding: 1, borderColor: 'yellow' }
-          )
+          'New ' +
+            packageJson.name +
+            ' version available ' +
+            packageJson.version +
+            ' → ' +
+            latestVersion +
+            `\nChangelog: https://github.com/fauna/faunadb-js/blob/main/CHANGELOG.md`,
+          { padding: 1, borderColor: 'yellow' }
         )
       }
     }

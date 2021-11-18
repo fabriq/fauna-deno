@@ -1,4 +1,3 @@
-import fetch from 'cross-fetch'
 import * as errors from '../src/errors'
 import * as query from '../src/query'
 import * as util from './util'
