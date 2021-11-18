@@ -1,6 +1,6 @@
 {
   "name": "@yacinehmito/faunadb",
-  "version": "5.0.0-deno-alpha6",
+  "version": "5.0.0-deno-alpha7",
   "apiVersion": "5",
   "description": "FaunaDB Javascript driver for Node.JS and Browsers",
   "homepage": "https://fauna.com",
@@ -61,7 +61,7 @@
     "build:cjs": "cross-env BABEL_ENV=cjs npx babel src -d ./cjs",
     "build:esm5": "cross-env BABEL_ENV=esm npx babel src -d ./esm5",
     "build:package": "npm-run-all build:clean build:browser build:cjs build:esm5 build:deno",
-    "build:deno": "esbuild --bundle src/index.js --outfile=mod.js --target=esnext && api-extractor run",
+    "build:deno": "esbuild --bundle src/index.js --outfile=mod.js --platform=neutral --format=esm --target=esnext && api-extractor run",
     "postbuild:package": "node tools/postBuildPackage.js",
     "posttest": "node ./test/afterComplete",
     "semantic-release": "semantic-release",

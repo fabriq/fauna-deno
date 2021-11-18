@@ -1,6 +1,6 @@
 {
   "name": "faunadb/stream",
-  "version": "5.0.0-deno-alpha6",
+  "version": "5.0.0-deno-alpha7",
   "apiVersion": "5",
   "description": "FaunaDB Javascript driver for Node.JS and Browsers",
   "browser": {
