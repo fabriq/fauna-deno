@@ -2,7 +2,7 @@
 
 import * as base64 from 'base64-js'
 import { inspect } from 'util'
-import deprecate from 'util-deprecate'
+import deprecate from './util-deprecate'
 import { InvalidValue } from './errors'
 import Expr from './Expr'
 import { checkInstanceHasProperty, inherits } from './_util'

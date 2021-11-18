@@ -15,3 +15,6 @@ export * from './src/types/errors'
 export * from './src/types/values'
 
 export { query }
+
+/** @public */
+export function setDeprecationHandler(fn: (msg: string) => void): void

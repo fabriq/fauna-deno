@@ -1,4 +1,4 @@
-import deprecate from 'util-deprecate'
+import deprecate from '../util-deprecate'
 import Expr from '../Expr'
 import { arity, wrap } from './common'
 
