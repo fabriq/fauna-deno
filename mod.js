@@ -695,43 +695,6 @@
     },
   })
 
-  // node_modules/util-deprecate/browser.js
-  var require_browser = __commonJS({
-    'node_modules/util-deprecate/browser.js'(exports2, module2) {
-      module2.exports = deprecate2
-      function deprecate2(fn, msg) {
-        if (config('noDeprecation')) {
-          return fn
-        }
-        var warned = false
-        function deprecated() {
-          if (!warned) {
-            if (config('throwDeprecation')) {
-              throw new Error(msg)
-            } else if (config('traceDeprecation')) {
-              console.trace(msg)
-            } else {
-              console.warn(msg)
-            }
-            warned = true
-          }
-          return fn.apply(this, arguments)
-        }
-        return deprecated
-      }
-      function config(name2) {
-        try {
-          if (!global.localStorage) return false
-        } catch (_) {
-          return false
-        }
-        var val = global.localStorage[name2]
-        if (val == null) return false
-        return String(val).toLowerCase() === 'true'
-      }
-    },
-  })
-
   // node_modules/fn-annotate/index.js
   var require_fn_annotate = __commonJS({
     'node_modules/fn-annotate/index.js'(exports2, module2) {
@@ -1417,7 +1380,7 @@
 
   // package.json
   var name = '@yacinehmito/faunadb'
-  var version = '5.0.0-deno-alpha4'
+  var version = '5.0.0-deno-alpha5'
   var apiVersion = '4'
   var description = 'FaunaDB Javascript driver for Node.JS and Browsers'
   var homepage = 'https://fauna.com'
@@ -1497,7 +1460,6 @@
     dotenv: '^8.2.0',
     'fn-annotate': '^1.1.3',
     'object-assign': '^4.1.0',
-    'util-deprecate': '^1.0.2',
   }
   var devDependencies = {
     '@actions/core': '^1.2.6',
@@ -2462,7 +2424,27 @@ ${documentationLink}`
 
   // src/values.js
   var base64 = __toModule(require_base64_js())
-  var import_util_deprecate = __toModule(require_browser())
+
+  // src/util-deprecate.js
+  var handleDeprecation = msg => {
+    console.warn(msg)
+  }
+  function setDeprecationHandler(fn) {
+    handleDeprecation = fn
+  }
+  function deprecate(fn, msg) {
+    var warned = false
+    function deprecated() {
+      if (!warned) {
+        handleDeprecation(msg)
+        warned = true
+      }
+      return fn.apply(this, arguments)
+    }
+    return deprecated
+  }
+
+  // src/values.js
   ;('use strict')
   var customInspect = import_util3.inspect && import_util3.inspect.custom
   var stringify = import_util3.inspect ? import_util3.inspect : JSON.stringify
@@ -2483,7 +2465,7 @@ ${documentationLink}`
     },
   })
   Object.defineProperty(Ref.prototype, 'class', {
-    get: (0, import_util_deprecate.default)(function() {
+    get: deprecate(function() {
       return this.value['collection']
     }, 'class is deprecated, use collection instead'),
   })
