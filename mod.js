@@ -454,7 +454,7 @@ __export(query_exports, {
 
 // package.json
 var name = '@yacinehmito/faunadb'
-var version = '5.0.0-deno-alpha8'
+var version = '5.0.0-deno-alpha9'
 var apiVersion = '5'
 var description = 'FaunaDB Javascript driver for Node.JS and Browsers'
 var homepage = 'https://fauna.com'
