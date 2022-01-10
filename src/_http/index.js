@@ -24,7 +24,6 @@ export default function HttpClient(options) {
 
   this._adapter = new FetchAdapter({
     isHttps: isHttps,
-    fetch: options.fetch,
     keepAlive: options.keepAlive,
   })
 
@@ -82,7 +81,6 @@ HttpClient.prototype.close = function(opts) {
  * when an error occurred.
  * when the stream is ended.
  * @param {?object} options.signal Abort signal object.
- * @param {?object} options.fetch Fetch API compatible function.
  * @param {?object} options.secret FaunaDB secret.
  * @param {?object} options.queryTimeout FaunaDB query timeout.
  * @returns {Promise} The response promise.

@@ -3243,7 +3243,6 @@ function FetchAdapter(options) {
   options = options || {}
   this.type = 'fetch'
   this._closed = false
-  this._fetch = options.fetch || fetch
   this._pendingRequests = new Map()
 }
 FetchAdapter.prototype.execute = function(options) {
@@ -3327,7 +3326,7 @@ FetchAdapter.prototype.execute = function(options) {
   if (options.signal) {
     options.signal.addEventListener('abort', onAbort)
   }
-  return this._fetch(formatUrl(options.origin, options.path, options.query), {
+  return fetch(formatUrl(options.origin, options.path, options.query), {
     method: options.method,
     headers: options.headers,
     body: options.body,
@@ -3413,7 +3412,6 @@ function HttpClient(options) {
   }
   this._adapter = new FetchAdapter({
     isHttps,
-    fetch: options.fetch,
     keepAlive: options.keepAlive,
   })
   this._baseUrl = options.scheme + '://' + options.domain + ':' + options.port
@@ -3545,7 +3543,6 @@ function Client(options) {
     observer: null,
     keepAlive: true,
     headers: {},
-    fetch: void 0,
     queryTimeout: null,
     http2SessionIdleTime: http2SessionIdleTime.value,
     checkNewVersion: true,

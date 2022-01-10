@@ -159,8 +159,6 @@ var notifyIfNewVersion = notifyAboutNewVersion()
  *   Callback that will be called after every completed request.
  * @param {?boolean} options.keepAlive
  *   Configures http/https keepAlive option (ignored in browser environments)
- * @param {?fetch} options.fetch
- *   a fetch compatible [API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for making a request
  * @param {?number} options.queryTimeout
  *   Sets the maximum amount of time (in milliseconds) for query execution on the server
  * @param {?number} options.http2SessionIdleTime
@@ -184,7 +182,6 @@ export default function Client(options) {
     observer: null,
     keepAlive: true,
     headers: {},
-    fetch: undefined,
     queryTimeout: null,
     http2SessionIdleTime: http2SessionIdleTime.value,
     checkNewVersion: true,
