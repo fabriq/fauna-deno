@@ -47,6 +47,28 @@ function getClient(opts) {
   return new Client(Object.assign({ secret: clientSecret }, getCfg(), opts))
 }
 
+function getFaunaEndpoint() {
+  var config = getCfg()
+  return config.scheme + '://' + config.domain + ':' + config.port
+}
+
+function getClientFromEndpoint(opts) {
+  var endpoint = getFaunaEndpoint()
+
+  return new Client(
+    objectAssign(
+      {
+        secret: clientSecret,
+        endpoint: endpoint,
+        scheme: 'bad scheme',
+        domain: 'bad domain',
+        port: 'bad port',
+      },
+      opts
+    )
+  )
+}
+
 function assertRejected(promise, errorType) {
   var succeeded = false
 
@@ -153,6 +175,8 @@ module.exports = {
   testConfig: testConfig,
   getCfg: getCfg,
   getClient: getClient,
+  getFaunaEndpoint: getFaunaEndpoint,
+  getClientFromEndpoint: getClientFromEndpoint,
   assertRejected: assertRejected,
   client: client,
   clientSecret: clientSecret,

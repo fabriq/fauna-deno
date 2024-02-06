@@ -1,8 +1,7 @@
-const query = require('../cjs/query')
-const Client = require('../cjs/Client')
-const util = require('../cjs/_util')
-const testConfig = require('./config')
-const errors = require('../cjs/errors')
+import * as errors from '../src/errors'
+import * as query from '../src/query'
+import dotenv from 'dotenv'
+dotenv.config()
 
 function takeObjectKeys(object) {
   var out = {}
@@ -16,7 +15,7 @@ function takeObjectKeys(object) {
 const rootClient = new Client.default(
   Object.assign(
     { secret: testConfig.auth },
-    util.removeUndefinedValues(
+    removeUndefinedValues(
       takeObjectKeys(testConfig, 'domain', 'scheme', 'port')
     )
   )

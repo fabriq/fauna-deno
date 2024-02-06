@@ -1,4 +1,4 @@
-name: Complete JIRA ticket to DONE
+name: Set JIRA ticket to DONE
 
 on:
   issues:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   set_done_for_closed_issued:
-    name: Move JIRA ticket to DONE
+    name: Set JIRA ticket to DONE
     runs-on: ubuntu-latest
     steps:
       - name: Login
@@ -17,20 +17,21 @@ jobs:
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
       - name: Find comment with ticket number
-        uses: peter-evans/find-comment@v1
-        id: botComment
+        uses: peter-evans/find-comment@v2
+        id: comment
         with:
           issue-number: ${{ github.event.issue.number }}
-          body-includes: Internal ticket number is OSS-
+          body-includes: Internal ticket number is FE-
+          nth: 0
 
-      - name: Parse ticket number
-        id: ticketNumber
+      - name: Get ticket number
+        id: ticket
         uses: atlassian/gajira-find-issue-key@master
         with:
-          string: ${{ steps.botComment.outputs.comment-body }}
-  
-      - name: Close ticket
+          string: ${{ steps.comment.outputs.comment-body }}
+
+      - name: Close
         uses: atlassian/gajira-transition@master
         with:
-          issue: ${{ steps.ticketNumber.outputs.issue }}
-          transition: "DONE"
+          issue: ${{ steps.ticket.outputs.issue }}
+          transition: 'DONE'

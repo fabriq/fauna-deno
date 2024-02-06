@@ -3,6 +3,51 @@
 - Supports fauna database API v5
 - Implemented new driver exception hierarchy
 
+## 4.8.0
+- Add `tags` and `traceheader` support in `client.query` [#672](https://github.com/fauna/faunadb-js/pull/672)
+
+## 4.7.1
+- disallow undefined required args [#663](https://github.com/fauna/faunadb-js/pull/663)
+
+## 4.7.0
+- Support nullable arguments for applicable FQL functions [#651](https://github.com/fauna/faunadb-js/pull/651)
+  and [#36](https://github.com/fauna/faunadb-js/pull/636)
+- Add optional endpoint parameter as an alternative to setting scheme, domain and port individually. The new parameter
+  will override scheme, domain and port if set. [#652](https://github.com/fauna/faunadb-js/pull/652)
+- Expose Stream types [#622](https://github.com/fauna/faunadb-js/pull/622)
+
+## 4.6.0
+- Enforce a maximum value of 5000 ms for the `http2SessionIdleTime` option [#642](https://github.com/fauna/faunadb-js/pull/642)
+- Add checks to `http2SessionIdleTime` so that sane defaults are used in case an invalid value is configured
+- Add the missing Native.ROLES type [#638](https://github.com/fauna/faunadb-js/pull/638)
+
+## 4.5.4
+- Disable ability to configure a client and the query method from returning metrics when calling query - fixing bug introduced in 4.5.3 that breaks backward compatibility. Continue supporting queryWithMetrics. [#633](https://github.com/fauna/faunadb-js/pull/633).
+
+## 4.5.3
+- Enable the client to return metrics on queries [#625](https://github.com/fauna/faunadb-js/pull/625) [#628](https://github.com/fauna/faunadb-js/pull/628)
+
+## 4.5.2
+- Fix documentation pipeline bug [#615](https://github.com/fauna/faunadb-js/pull/615)
+- Fix webpack custom module bug [#614](https://github.com/fauna/faunadb-js/pull/614)
+
+## 4.5.1
+- Address dependency security vulnerabilities [#606](https://github.com/fauna/faunadb-js/pull/606)
+- Improve deployment pipeline [#612](https://github.com/fauna/faunadb-js/pull/612)
+
+## 4.5.0
+- Add set-streaming feature support [#589](https://github.com/fauna/faunadb-js/pull/589)
+
+## 4.4.2
+- Upgrade dependencies to address security concerns [#600](https://github.com/fauna/faunadb-js/pull/600)
+- Fix Auth0 [#558](https://github.com/fauna/faunadb-js/pull/558)
+- Fix `isFaunaValue` and `isFaunaRef` properties [#529](https://github.com/fauna/faunadb-js/pull/529)
+- Fix stack trace capture [#536](https://github.com/fauna/faunadb-js/pull/536)
+- Fix `ContainsStr` to render as string [#537](https://github.com/fauna/faunadb-js/pull/537)
+- Improve `Expr` type declaration to include `toFQL()` [#544](https://github.com/fauna/faunadb-js/pull/544)
+- Improve `PageHelper` [#543](https://github.com/fauna/faunadb-js/pull/543)
+- Improve unauthorized error message clarity [#557](https://github.com/fauna/faunadb-js/pull/557)
+
 ## 4.4.1
 
 - Make `signal` property of `client.query` optional
@@ -33,7 +78,7 @@
 ## 4.2.0
 
 - Improve HTTP2 session timeout handling
-- Add the `FAUNADB_HTTP2_SESSION_IDLE_TIME` environment variable  
+- Add the `FAUNADB_HTTP2_SESSION_IDLE_TIME` environment variable
   to specify the default HTTP2 session timeout period
 - Implement a fix for the lack of a `navigator` object in Cloudflare Workers
 

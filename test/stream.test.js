@@ -112,7 +112,7 @@ describe('StreamAPI', () => {
       expect(() => stream.start()).toThrow(Error)
     })
 
-    async function testErrorEvent(done, checkErrorCallback) {
+    async function testErrorEvent(checkErrorCallback) {
       let role = await client.query(
         q.CreateRole({
           name: util.randomString('role'),
@@ -138,13 +138,12 @@ describe('StreamAPI', () => {
         })
         .on('error', error => {
           checkErrorCallback(error)
-          done()
         })
         .start()
     }
 
-    test('wraps error events', async done => {
-      testErrorEvent(done, error => {
+    test('wraps error events', async () => {
+      testErrorEvent(error => {
         if (error.code && error.description) {
           expect(error.code).toEqual('permission denied')
           expect(error.description).toEqual(
@@ -154,8 +153,8 @@ describe('StreamAPI', () => {
       })
     })
 
-    test('wraps delegated error events if stream closed unexpectedly', async done => {
-      testErrorEvent(done, error => {
+    test('wraps delegated error events if stream closed unexpectedly', async () => {
+      testErrorEvent(error => {
         if (error instanceof TypeError) {
           expect(error.message).toEqual('network error')
         }
@@ -275,6 +274,48 @@ describe('StreamAPI', () => {
         })
         .start()
     })
+
+    test.each([50, 500, 5000])('stays open beyond the value set for http2SessionIdleTime', async (idleTime) => {
+      const padding = 100
+      let seen_event = false
+      const client = util.getClient({
+        secret: key.secret,
+        http2SessionIdleTime: idleTime,
+      })
+      const oldTimestamp = doc.ts
+
+      const getNumberOfSessions = () => Object.keys(client._http._adapter._sessionMap).length
+
+      stream = client.stream
+      .document(doc.ref)
+      .on('version', (event) => {
+        seen_event = true
+        expect(event.action).toEqual("update")
+        expect(event.document.ts).toBeGreaterThan(oldTimestamp)
+      })
+
+      stream.start()
+
+      await util.delay(idleTime + padding)
+      expect(getNumberOfSessions()).toBe(1)
+
+      // this will create a new session as it is not a stream
+      const { ts: newTimestamp } = await client.query(q.Update(doc.ref, {}))
+      expect(newTimestamp).toBeGreaterThan(oldTimestamp)
+
+      await util.delay(idleTime + padding)
+      expect(getNumberOfSessions()).toBeGreaterThanOrEqual(1)
+      expect(seen_event).toBe(true)
+
+      seen_event = false
+      await util.delay(idleTime + padding)
+      expect(getNumberOfSessions()).toBeGreaterThanOrEqual(1)
+      expect(seen_event).toBe(false)
+
+      stream.close()
+      await util.delay(idleTime + padding)
+      expect(getNumberOfSessions()).toBe(0)
+    }, 30000);
   })
 
   describe('document', () => {
@@ -364,6 +405,36 @@ describe('StreamAPI', () => {
       await util.delay(idleTime + 1)
 
       assertActiveSessions(0)
+    })
+  })
+
+  describe('set', () => {
+    test('can listen to set adds', done => {
+      stream = client.stream(q.Documents(coll.ref))
+        .on('start', () => {
+          client.query(
+            q.Create(coll.ref, {
+              data: { name: "foo" }
+            })
+          )
+        })
+        .on('set', event => {
+          expect(event.action).toEqual('add')
+          done()
+        })
+        .start()
+    })
+
+    test('can listen to set removes', done => {
+      stream = client.stream(q.Documents(coll.ref))
+        .on('start', () => {
+          client.query(q.Delete(doc.ref))
+        })
+        .on('set', event => {
+          expect(event.action).toEqual('remove')
+          done()
+        })
+        .start()
     })
   })
 })

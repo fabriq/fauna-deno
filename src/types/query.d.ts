@@ -16,7 +16,7 @@ export function Abort(msg: ExprArg): Expr
 /** @public */
 export function At(timestamp: ExprArg, expr: ExprArg): Expr
 /** @public */
-export function Let(vars: ExprArg, in_expr: ExprArg): Expr
+export function Let(vars: ExprArg, in_expr: ExprArg | null): Expr
 /** @public */
 export function Var(varName: ExprArg): Expr
 /** @public */
@@ -73,51 +73,51 @@ export function IsEmpty(collection: ExprArg): Expr
 /** @public */
 export function IsNonEmpty(collection: ExprArg): Expr
 /** @public */
-export function IsNumber(expr: ExprArg): Expr
+export function IsNumber(expr: ExprArg | null): Expr
 /** @public */
-export function IsDouble(expr: ExprArg): Expr
+export function IsDouble(expr: ExprArg | null): Expr
 /** @public */
-export function IsInteger(expr: ExprArg): Expr
+export function IsInteger(expr: ExprArg | null): Expr
 /** @public */
-export function IsBoolean(expr: ExprArg): Expr
+export function IsBoolean(expr: ExprArg | null): Expr
 /** @public */
-export function IsNull(expr: ExprArg): Expr
+export function IsNull(expr: ExprArg | null): Expr
 /** @public */
-export function IsBytes(expr: ExprArg): Expr
+export function IsBytes(expr: ExprArg | null): Expr
 /** @public */
-export function IsTimestamp(expr: ExprArg): Expr
+export function IsTimestamp(expr: ExprArg | null): Expr
 /** @public */
-export function IsDate(expr: ExprArg): Expr
+export function IsDate(expr: ExprArg | null): Expr
 /** @public */
-export function IsString(expr: ExprArg): Expr
+export function IsString(expr: ExprArg | null): Expr
 /** @public */
-export function IsArray(expr: ExprArg): Expr
+export function IsArray(expr: ExprArg | null): Expr
 /** @public */
-export function IsObject(expr: ExprArg): Expr
+export function IsObject(expr: ExprArg | null): Expr
 /** @public */
-export function IsRef(expr: ExprArg): Expr
+export function IsRef(expr: ExprArg | null): Expr
 /** @public */
-export function IsSet(expr: ExprArg): Expr
+export function IsSet(expr: ExprArg | null): Expr
 /** @public */
-export function IsDoc(expr: ExprArg): Expr
+export function IsDoc(expr: ExprArg | null): Expr
 /** @public */
-export function IsLambda(expr: ExprArg): Expr
+export function IsLambda(expr: ExprArg | null): Expr
 /** @public */
-export function IsCollection(expr: ExprArg): Expr
+export function IsCollection(expr: ExprArg | null): Expr
 /** @public */
-export function IsDatabase(expr: ExprArg): Expr
+export function IsDatabase(expr: ExprArg | null): Expr
 /** @public */
-export function IsIndex(expr: ExprArg): Expr
+export function IsIndex(expr: ExprArg | null): Expr
 /** @public */
-export function IsFunction(expr: ExprArg): Expr
+export function IsFunction(expr: ExprArg | null): Expr
 /** @public */
-export function IsKey(expr: ExprArg): Expr
+export function IsKey(expr: ExprArg | null): Expr
 /** @public */
-export function IsToken(expr: ExprArg): Expr
+export function IsToken(expr: ExprArg | null): Expr
 /** @public */
-export function IsCredentials(expr: ExprArg): Expr
+export function IsCredentials(expr: ExprArg | null): Expr
 /** @public */
-export function IsRole(expr: ExprArg): Expr
+export function IsRole(expr: ExprArg | null): Expr
 
 /** @public */
 export function Get(ref: ExprArg, ts?: ExprArg): Expr
@@ -186,7 +186,11 @@ export function Distinct(set: ExprArg): Expr
 export function Join(source: ExprArg, target: ExprArg | LambdaType): Expr
 
 /** @public */
-export function Range(set: ExprArg, from: ExprArg, to: ExprArg): Expr
+export function Range(
+  set: ExprArg,
+  from: ExprArg | null,
+  to: ExprArg | null
+): Expr
 /** @public */
 export function Login(ref: ExprArg, params: ExprArg): Expr
 /** @public */
@@ -339,11 +343,15 @@ export function Tokens(scope?: ExprArg): Expr
 /** @public */
 export function Credentials(scope?: ExprArg): Expr
 /** @public */
-export function Equals(...args: ExprArg[]): Expr
+export function Equals(...args: (ExprArg | null)[]): Expr
 /** @public */
 export function Contains(path: ExprArg, _in: ExprArg): Expr
 /** @public */
-export function Select(path: ExprArg, from: ExprArg, _default?: ExprArg): Expr
+export function Select(
+  path: ExprArg,
+  from: ExprArg,
+  _default?: ExprArg | null
+): Expr
 /** @public */
 export function SelectAll(path: ExprArg, from: ExprArg): Expr
 /** @public */
@@ -440,7 +448,7 @@ export function Or(...args: ExprArg[]): Expr
 export function Not(bool: ExprArg): Expr
 
 /** @public */
-export function ToString(expr: ExprArg): Expr
+export function ToString(expr: ExprArg | null): Expr
 /** @public */
 export function ToNumber(expr: ExprArg): Expr
 /** @public */
@@ -471,7 +479,7 @@ export function ContainsPath(path: ExprArg, _in: ExprArg): Expr
 /** @public */
 export function ContainsField(field: string, _in: ExprArg): Expr
 /** @public */
-export function ContainsValue(value: ExprArg, _in: ExprArg): Expr
+export function ContainsValue(value: ExprArg | null, _in: ExprArg): Expr
 /** @public */
 export function Reverse(expr: ExprArg): Expr
 

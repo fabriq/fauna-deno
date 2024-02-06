@@ -27,7 +27,7 @@ resources:
       private_key: ((fauna/repo.key))
 
 jobs:
-  - name: release
+  - name: release-npm
     serial: true
     public: false
     plan:
@@ -60,6 +60,16 @@ jobs:
           params:
             text_file: slack-message/publish
 
+
+  - name: release-docs
+    serial: true
+    public: false
+    plan:
+      - get: fauna-js-repository
+        passed: [release-npm]
+        trigger: true
+      - get: fauna-js-repository-docs
+        passed: [release-npm]
 
       - task: publish-docs
         file: fauna-js-repository/concourse/tasks/publish-docs.yml

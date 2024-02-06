@@ -1,4 +1,4 @@
-# FaunaDB Javascript Driver
+# The Official JavaScript driver for v4 API of Fauna
 
 [![CircleCI](https://circleci.com/gh/fauna/faunadb-js.svg?style=svg)](https://circleci.com/gh/fauna/faunadb-js)
 [![Npm Version](https://img.shields.io/npm/v/faunadb.svg?maxAge=21600)](https://www.npmjs.com/package/faunadb)
@@ -6,22 +6,25 @@
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-A Javascript driver for [FaunaDB](https://fauna.com).
+A JavaScript driver for [FaunaDB](https://fauna.com). 
+
+Note: This driver supports an older version of the Fauna API. The latest version of the official Fauna Javascript Driver is located [here](https://www.npmjs.com/package/fauna/v/latest) (we encourage all new development to use this new version where possible).
 
 [View reference JSDocs here](https://fauna.github.io/faunadb-js).
 
-See the [FaunaDB Documentation](https://docs.fauna.com/) and
-[Tutorials](https://docs.fauna.com/fauna/current/tutorials/crud) for
+See the [FaunaDB Documentation](https://docs.fauna.com/fauna/v4) and
+[Tutorials](https://docs.fauna.com/fauna/v4/learn/tutorials/fql/crud?lang=javascript) for
 guides and a complete database [API
-reference](https://docs.fauna.com/fauna/current/api/fql/).
+reference](https://docs.fauna.com/fauna/v4/api/fql/).
 
 ## Supported Runtimes
 
 This Driver supports and is tested on:
 
-- Node.js
-  - LTS
-  - Stable
+- Node.js [*Current*, *Active LTS*, and *Maintenance LTS* releases](https://nodejs.org/en/about/releases/)
+  - *Current* - v17
+  - *Active LTS* - currently v16
+  - *Maintenance LTS* - v12 and v14 
 - Chrome
 - Firefox
 - Safari
@@ -55,12 +58,12 @@ The minified version of the driver can also be used via CDN:
 
 ### Use
 
-The [tutorials](https://docs.fauna.com/fauna/current/tutorials/crud) in
+The [tutorials](https://docs.fauna.com/fauna/current/learn/tutorials/fql/crud?lang=javascript) in
 the FaunaDB documentation contain other driver-specific examples.
 
 #### Connecting from the browser
 
-To get up and running quickly, below is a full example for connecting from the browser. Replace <your_key_here> with a database secret. You can get that by visiting your [FaunaDB Dashboard](https://dashboard.fauna.com/), creating a new database, clicking on "Security" in the sidebar on the left, and then clicking "New Key". To learn more about keys, see [FaunaDB Key System](https://docs.fauna.com/fauna/current/security/keys.html).
+To get up and running quickly, below is a full example for connecting from the browser. Replace <your_key_here> with a database secret. You can get that by visiting your [FaunaDB Dashboard](https://v4.dashboard.fauna.com/), creating a new database, clicking on "Security" in the sidebar on the left, and then clicking "New Key". To learn more about keys, see [FaunaDB Key System](https://docs.fauna.com/fauna/v4/security/keys.html).
 
 ```javascript
 <html>
@@ -283,11 +286,42 @@ const startStream = () => {
 startStream()
 ```
 
+The `metrics` option is used during instantiation to create a client that also 
+returns usage information about the queries issued to FaunaDB.
+
+```javascript
+let client = new faunadb.Client({ 
+  secret: 'YOUR_FAUNADB_SECRET',
+  metrics: true 
+})
+```
+
+#### Querying and Returning the metrics of your queries
+
+The `response` object is shaped differently for clients when calling `queryWithMetrics`;
+it includes the value of the response along with a metrics field giving data on ops,
+time, and transaction retires consumed by your query:
+
+```javascript
+{
+  value: { ... }, // structured response body
+  metrics: {
+    x-compute-ops: XX,
+    x-byte-read-ops: XX,
+    x-byte-write-ops: XX,
+    x-query-time: XX,
+    x-txn-retries: XX
+  } // usage data
+}
+```
+
+Metrics returned in the response will be of `number` data type.
+
 #### Pagination Helpers
 
 This driver contains helpers to provide a simpler API for consuming paged
 responses from FaunaDB. See the [Paginate function
-reference](https://docs.fauna.com/fauna/current/api/fql/functions/paginate)
+reference](https://docs.fauna.com/fauna/v4/api/fql/functions/paginate)
 for a description of paged responses.
 
 Using the helper to page over sets lets the driver handle cursoring and
@@ -352,8 +386,9 @@ var data = client.query(q.Paginate(q.Collections()), {
 
 #### Per-query options
 
-Some options (currently only `secret` and `queryTimout`) can be overriden on a per-query basis:
+Some options can be provided on a per-query basis:
 
+##### secret
 ```javascript
 var createP = client.query(
   q.Create(q.Collection('test'), { data: { testField: 'testValue' } }),
@@ -371,11 +406,33 @@ var helper = client.paginate(
 )
 ```
 
+##### queryTimeout
 ```javascript
 var data = client.query(q.Paginate(q.Collections()), {
   queryTimeout: 100,
 })
 ```
+
+##### traceparent
+A [W3C-compliant](https://w3c.github.io/trace-context) identifier for enabling distributed tracing across different
+vendors. If not provided, one is automatically generated server-side and attached to the query. Customer's should
+inspect the returned traceresponse to determine if a new traceparent has been created, and use that instead. See
+[Trace Context](https://w3c.github.io/trace-context) spec for more details.
+```javascript
+var data = client.query(q.Paginate(q.Collections()), {
+  traceparent: "00-c91308c112be8448dd34dc6191567fa0-b7ad6b7169203331-01",
+})
+```
+
+##### tags
+Allows for associating user-provided tags with a query.
+```javascript
+var data = client.query(q.Paginate(q.Collections()), {
+  tags: { key1: "value1", key2: "value2" },
+})
+```
+Both tags and their associated values, must be strings. The only allowable characters are alphanumeric values as well
+as an underscope (_). Max length for keys is 40 characters. Max length for values is 60 characters.
 
 #### Custom Fetch
 
@@ -397,14 +454,17 @@ have been resolved, the client will keep the session open for a period of time
 (500ms by default) to be reused for any new requests.
 
 The `http2SessionIdleTime` parameter may be used to control how long the HTTP/2
-session remains open while the connection is idle. To save on the overhead of
-closing and re-opening the session, set `http2SessionIdleTime` to a longer time
---- or even `Infinity`, to keep the session alive indefinitely.
+session remains open while the query connection is idle. To save on the overhead of
+closing and re-opening the session, set `http2SessionIdleTime` to a longer time.
+The default value is 500ms and the maximum value is 5000ms.
 
-While an HTTP/2 session is alive, the client will hold the Node.js event loop
+Note that `http2SessionIdleTime` has no effect on a stream connection: a stream
+is a long-lived connection that is intended to be held open indefinitely.
+
+While an HTTP/2 session is alive, the client holds the Node.js event loop
 open; this prevents the process from terminating. Call `Client#close` to manually
 close the session and allow the process to terminate. This is particularly
-important if `http2SessionIdleTime` is long or `Infinity`:
+important if `http2SessionIdleTime` is long:
 
 ```javascript
 // sample.js (run it with "node sample.js" command)
@@ -413,15 +473,13 @@ const { Client, query: Q } = require('faunadb')
 async function main() {
   const client = new Client({
     secret: 'YOUR_FAUNADB_SECRET',
-    http2SessionIdleTime: Infinity,
-    //                    ^^^ Infinity or non-negative integer
+    http2SessionIdleTime: 1000, // Must be a non-negative integer
   })
   const output = await client.query(Q.Add(1, 1))
 
   console.log(output)
 
   client.close()
-  //     ^^^ If it's not called then the process won't terminate
 }
 
 main().catch(console.error)
@@ -490,8 +548,8 @@ Therefore it is recommended to use a FaunaDB key scoped to an empty parent
 database created for this purpose, rather than your account's root key. This
 will make cleanup of test databases as easy as removing the parent database.
 
-See the [FaunaDB Multitenancy
-Tutorial](https://docs.fauna.com/fauna/current/tutorials/multitenant)
+See the [FaunaDB Multi-tenancy
+Tutorial](https://docs.fauna.com/fauna/v4/learn/tutorials/fql/multitenant)
 for more information about nested databases.
 
 Alternatively, tests can be run via a Docker container with
@@ -555,7 +613,7 @@ npm install /path/to/tarball
 
 ## License
 
-Copyright 2021 [Fauna, Inc.](https://fauna.com/)
+Copyright 2023 [Fauna, Inc.](https://fauna.com/)
 
 Licensed under the Mozilla Public License, Version 2.0 (the "License"); you may
 not use this software except in compliance with the License. You may obtain a

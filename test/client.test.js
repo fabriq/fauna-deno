@@ -9,14 +9,20 @@ import * as util from './util'
 var client
 
 describe('Client', () => {
+  const env = process.env
+
   beforeAll(() => {
     // Hideous way to ensure that the client is initialized.
     client = util.client()
-
     return client.query(query.CreateCollection({ name: 'my_collection' }))
   })
 
+  beforeEach(() => {
+    process.env = { ...env }
+  })
+
   afterEach(() => {
+    process.env = env
     util.clearBrowserSimulation()
   })
 
@@ -31,6 +37,30 @@ describe('Client', () => {
     })
   })
 
+  test('ping with client configured with "endpoint"', () => {
+    var client = util.getClientFromEndpoint()
+    return client.ping('node').then(function(res) {
+      expect(res).toEqual('Scope node is OK')
+    })
+  })
+
+  test('endpoint normalization', async () => {
+    const endpoint = util.getFaunaEndpoint()
+    const endpoints = [
+      endpoint,
+      endpoint + '/',
+      endpoint + '//',
+      endpoint + '\\',
+      endpoint + '\\\\',
+    ]
+    for (const e of endpoints) {
+      var client = new Client({ secret: util.clientSecret, endpoint: e })
+
+      const res = await client.ping('node')
+      expect(res).toEqual('Scope node is OK')
+    }
+  })
+
   test("omits the port value if it's falsy", () => {
     const client = new Client({
       secret: 'FAKED',
@@ -38,6 +68,32 @@ describe('Client', () => {
     })
 
     expect(client._http._baseUrl.endsWith(':0')).toBeFalsy()
+  })
+
+  test('the client does not support a metrics flag', async () => {
+    expect(() => util.getClient({ metrics: true })).toThrow(
+      new Error('No such option metrics')
+    )
+  })
+
+  test('query does not support a metrics flag', async () => {
+    const response = await client.query(query.Add(1, 1))
+    expect(response).toEqual(2)
+  })
+
+  test('queryWithMetrics returns the metrics and the response value', async () => {
+    const response = await client.queryWithMetrics(query.Add(1, 1))
+    expect(response.value).toEqual(2)
+    assertMetric(response.metrics, 'x-compute-ops')
+    assertMetric(response.metrics, 'x-byte-read-ops')
+    assertMetric(response.metrics, 'x-byte-write-ops')
+    assertMetric(response.metrics, 'x-query-time')
+    assertMetric(response.metrics, 'x-txn-retries')
+  })
+
+  test('queryWithMetrics returns the metrics', async () => {
+    const response = await client.queryWithMetrics(query.Add(1, 1))
+    expect(Object.keys(response).sort()).toEqual(['metrics', 'value'])
   })
 
   test('paginates', () => {
@@ -79,12 +135,12 @@ describe('Client', () => {
 
   test('extract response headers from observer', () => {
     var assertResults = function(result) {
-      assertHeader(result.responseHeaders, 'x-read-ops')
-      assertHeader(result.responseHeaders, 'x-write-ops')
-      assertHeader(result.responseHeaders, 'x-storage-bytes-read')
-      assertHeader(result.responseHeaders, 'x-storage-bytes-write')
-      assertHeader(result.responseHeaders, 'x-query-bytes-in')
-      assertHeader(result.responseHeaders, 'x-query-bytes-out')
+      assertObserverStats(result.responseHeaders, 'x-read-ops')
+      assertObserverStats(result.responseHeaders, 'x-write-ops')
+      assertObserverStats(result.responseHeaders, 'x-storage-bytes-read')
+      assertObserverStats(result.responseHeaders, 'x-storage-bytes-write')
+      assertObserverStats(result.responseHeaders, 'x-query-bytes-in')
+      assertObserverStats(result.responseHeaders, 'x-query-bytes-out')
 
       expect(result.endTime).toBeGreaterThan(result.startTime)
     }
@@ -150,7 +206,7 @@ describe('Client', () => {
 
   test('Client#close call on Http2Adapter-based Client', async () => {
     const client = util.getClient({
-      http2SessionIdleTime: Infinity,
+      http2SessionIdleTime: 5000,
     })
 
     await client.ping()
@@ -387,80 +443,124 @@ describe('Client', () => {
     ).toBeDefined()
   })
 
-  describe('notify about new version', () => {
-    beforeAll(() => {
-      global.fetch = jest.fn().mockResolvedValue({
-        json: () =>
-          Promise.resolve({
-            'dist-tags': {
-              latest: '999.999.999',
-            },
-          }),
-      })
-    })
+  test('http2SessionIdleTime env overrides client config', async () => {
+    var client
+    var internalIdleTime
+    const maxIdleTime = 5000
+    const defaultIdleTime = 500
 
-    beforeEach(() => {
-      console.info.mockClear()
-      resetNotifyAboutNewVersion()
+    process.env.FAUNADB_HTTP2_SESSION_IDLE_TIME = '999'
+    client = util.getClient({
+      http2SessionIdleTime: 2500,
     })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(999)
 
-    test('enabled by default', async () => {
-      new Client(util.getCfg())
-      await new Promise(resolve => {
-        setTimeout(() => {
-          expect(console.info.mock.calls[0][0]).toContain(
-            'New faunadb version available'
-          )
-          resolve()
-        }, 0)
-      })
+    process.env.FAUNADB_HTTP2_SESSION_IDLE_TIME = maxIdleTime + 1
+    client = util.getClient({
+      http2SessionIdleTime: 2500,
     })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(maxIdleTime)
 
-    test('print message only once', async () => {
-      new Client(util.getCfg())
-      new Client(util.getCfg())
-      new Client(util.getCfg())
-      await new Promise(resolve => {
-        setTimeout(() => {
-          expect(console.info).toBeCalledTimes(1)
-          resolve()
-        }, 0)
-      })
+    process.env.FAUNADB_HTTP2_SESSION_IDLE_TIME = 'Infinity'
+    client = util.getClient({
+      http2SessionIdleTime: 2500,
     })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(maxIdleTime)
 
-    test('do not print message if installed version is the latest one', async () => {
-      global.fetch.mockResolvedValueOnce({
-        json: () =>
-          Promise.resolve({
-            'dist-tags': {
-              latest: '0.0.1',
-            },
-          }),
-      })
-      new Client(util.getCfg())
-      await new Promise(resolve => {
-        setTimeout(() => {
-          expect(console.info).not.toBeCalled()
-          resolve()
-        }, 0)
-      })
+    process.env.FAUNADB_HTTP2_SESSION_IDLE_TIME = 'Cat'
+    client = util.getClient({
+      http2SessionIdleTime: 2500,
     })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(2500)
 
-    test('disable checking', async () => {
-      new Client({ ...util.getCfg(), checkNewVersion: false })
-      await new Promise(resolve => {
-        setTimeout(() => {
-          expect(console.info).not.toBeCalled()
-          resolve()
-        }, 0)
-      })
+    process.env.FAUNADB_HTTP2_SESSION_IDLE_TIME = 'Cat'
+    client = util.getClient({
+      http2SessionIdleTime: 'Cat',
     })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(defaultIdleTime)
+
+    process.env.FAUNADB_HTTP2_SESSION_IDLE_TIME = '-999'
+    client = util.getClient({
+      http2SessionIdleTime: 2500,
+    })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(2500)
+
+    process.env.FAUNADB_HTTP2_SESSION_IDLE_TIME = '-999'
+    client = util.getClient({
+      http2SessionIdleTime: -999,
+    })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(defaultIdleTime)
+
+    process.env.FAUNADB_HTTP2_SESSION_IDLE_TIME = '-999'
+    client = util.getClient({
+      http2SessionIdleTime: 'Infinity',
+    })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(maxIdleTime)
+  })
+
+  test('http2SessionIdleTime respects the max and default', async () => {
+    var client
+    var internalIdleTime
+    const maxIdleTime = 5000
+    const defaultIdleTime = 500
+    process.env.FAUNADB_HTTP2_SESSION_IDLE_TIME = undefined
+
+    client = util.getClient({
+      http2SessionIdleTime: 'Infinity',
+    })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(maxIdleTime)
+
+    client = util.getClient({
+      http2SessionIdleTime: maxIdleTime + 1,
+    })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(maxIdleTime)
+
+    client = util.getClient({})
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(defaultIdleTime)
+
+    client = util.getClient({ http2SessionIdleTime: null })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(defaultIdleTime)
+
+    client = util.getClient({
+      http2SessionIdleTime: 'Cat',
+    })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(defaultIdleTime)
+
+    client = util.getClient({
+      http2SessionIdleTime: 2500,
+    })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(2500)
+
+    client = util.getClient({
+      http2SessionIdleTime: -2500,
+    })
+    internalIdleTime = client._http._adapter._http2SessionIdleTime
+    expect(internalIdleTime).toBe(defaultIdleTime)
   })
 })
 
-function assertHeader(headers, name) {
-  expect(headers[name]).not.toBeNull()
-  expect(parseInt(headers[name])).toBeGreaterThanOrEqual(0)
+function assertObserverStats(metrics, name) {
+  expect(metrics[name]).not.toBeNull()
+  expect(parseInt(metrics[name])).toBeGreaterThanOrEqual(0)
+}
+
+function assertMetric(metrics, name) {
+  expect(metrics[name]).not.toBeNull()
+  expect(metrics[name]).toBeGreaterThanOrEqual(0)
 }
 
 function createDocument() {

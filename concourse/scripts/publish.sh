@@ -4,7 +4,6 @@ set -eou
 
 cd ./fauna-js-repository
 
-
 PACKAGE_VERSION=$(node -p -e "require('./package.json').version")
 NPM_LATEST_VERSION=$(npm view faunadb version)
 echo "Current package version: $PACKAGE_VERSION"
@@ -23,5 +22,4 @@ then
 else
   echo "faunadb-js@${NPM_LATEST_VERSION} package has been already published" > ../slack-message/publish
   echo "faunadb-js@${NPM_LATEST_VERSION} package has been already published" 1>&2
-  exit 1
 fi

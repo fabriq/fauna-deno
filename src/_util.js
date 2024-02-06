@@ -483,3 +483,25 @@ export function notifyAboutNewVersion() {
 
   return checkAndNotify
 }
+
+/**
+ * Resolves which Fetch API compatible function to use. If an override is
+ * provided, returns the override. If no override and the global (window) has
+ * "fetch" property, return the native fetch. Otherwise returns the cross-fetch polyfill.
+ *
+ * @param {?function} fetchOverride An Fetch API compatible function to use.
+ * @returns {function} A Fetch API compatible function.
+ * @private
+ */
+function resolveFetch(fetchOverride) {
+  if (typeof fetchOverride === 'function') {
+    return fetchOverride
+  }
+
+  if (typeof crossGlobal.fetch === 'function') {
+    // NB. Rebinding to global is needed for Safari
+    return crossGlobal.fetch.bind(crossGlobal)
+  }
+
+  return require('cross-fetch')
+}

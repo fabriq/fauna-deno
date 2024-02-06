@@ -28,7 +28,12 @@ export default function HttpClient(options) {
     keepAlive: options.keepAlive,
   })
 
-  this._baseUrl = options.scheme + '://' + options.domain + ':' + options.port
+  if (options.endpoint === null) {
+    this._baseUrl = options.scheme + '://' + options.domain + ':' + options.port
+  } else {
+    this._baseUrl = options.endpoint
+  }
+
   this._secret = options.secret
   this._headers = Object.assign({}, options.headers, getDefaultHeaders())
   this._lastSeen = null
@@ -85,6 +90,8 @@ HttpClient.prototype.close = function(opts) {
  * @param {?object} options.fetch Fetch API compatible function.
  * @param {?object} options.secret FaunaDB secret.
  * @param {?object} options.queryTimeout FaunaDB query timeout.
+ * @param {?string} options.traceparent Unique identifier for the query.
+ * @param { {[key: string]: string|number } } options.tags Keyword-value pairs which can be associated with a query.
  * @returns {Promise} The response promise.
  */
 HttpClient.prototype.execute = function(options) {
@@ -102,10 +109,19 @@ HttpClient.prototype.execute = function(options) {
   var secret = options.secret || this._secret
   var queryTimeout = options.queryTimeout || this._queryTimeout
   var headers = this._headers
+  // We perform basic validation on the traceparent format and pass along as-is.
+  // In the event the traceparent is invalid, we silently drop it here, generate
+  // a new one server-side, and return it via the traceresponse header.
+  // See https://w3c.github.io/trace-context/#a-traceparent-is-received
+  var traceparent = isValidTraceparentHeader(options.traceparent)
+    ? options.traceparent
+    : null
 
   headers['Authorization'] = secret && secretHeader(secret)
   headers['X-Last-Seen-Txn'] = this._lastSeen
   headers['X-Query-Timeout'] = queryTimeout
+  headers['traceparent'] = traceparent
+  headers['x-fauna-tags'] = parseTags(options.tags)
 
   return this._adapter.execute({
     origin: this._baseUrl,
@@ -118,6 +134,27 @@ HttpClient.prototype.execute = function(options) {
     queryTimeout: this._queryTimeout,
     streamConsumer: options.streamConsumer,
   })
+}
+
+function isValidTraceparentHeader(traceparentHeader) {
+  // Shamelessly copied from shorturl.at/osvwz
+  return /^[\da-f]{2}-[\da-f]{32}-[\da-f]{16}-[\da-f]{2}$/.test(
+    traceparentHeader
+  )
+}
+
+function parseTags(tags) {
+  if (tags === undefined || tags == null || tags == '') return null
+  validateTags(tags)
+  return Object.entries(tags)
+    .map(e => e.join('='))
+    .join(',')
+}
+
+function validateTags(tags) {
+  if (typeof tags != 'object') {
+    throw new Error('Tags must be provided as an object!')
+  }
 }
 
 function secretHeader(secret) {
