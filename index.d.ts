@@ -2,6 +2,7 @@ import * as query from './src/types/query'
 
 export {
   default as Client,
+  MetricsResponse,
   ClientConfig,
   ExprArg,
   QueryOptions,

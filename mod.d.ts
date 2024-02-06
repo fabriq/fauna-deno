@@ -71,6 +71,10 @@ declare function Classes(scope?: ExprArg): Expr
 export declare class Client {
     constructor(opts?: ClientConfig)
     query<T = object>(expr: ExprArg, options?: QueryOptions): Promise<T>
+    queryWithMetrics<T = object>(
+    expr: ExprArg,
+    options?: QueryOptions
+    ): Promise<MetricsResponse<T>>
     paginate(expr: Expr, params?: object, options?: QueryOptions): PageHelper
     ping(scope?: string, timeout?: number): Promise<string>
     close(opts?: { force?: boolean }): Promise<void>
@@ -79,6 +83,7 @@ export declare class Client {
 /** @public */
 export declare interface ClientConfig {
     secret: string
+    endpoint?: string
     domain?: string
     scheme?: 'http' | 'https'
     port?: number
@@ -91,6 +96,7 @@ export declare interface ClientConfig {
     headers?: { [key: string]: string | number }
     http2SessionIdleTime?: number
     checkNewVersion?: boolean
+    metrics?: boolean
 }
 
 /** @public */
@@ -118,7 +124,7 @@ declare function ContainsStr(value: ExprArg, search: ExprArg): Expr
 declare function ContainsStrRegex(value: ExprArg, pattern: ExprArg): Expr
 
 /** @public */
-declare function ContainsValue(value: ExprArg, _in: ExprArg): Expr
+declare function ContainsValue(value: ExprArg | null, _in: ExprArg): Expr
 
 /** @public */
 declare function Cos(expr: ExprArg): Expr
@@ -214,7 +220,7 @@ declare function EndsWith(value: ExprArg, search: ExprArg): Expr
 declare function Epoch(number: ExprArg, unit: ExprArg): Expr
 
 /** @public */
-declare function Equals(...args: ExprArg[]): Expr
+declare function Equals(...args: (ExprArg | null)[]): Expr
 
 /** @public */
 export declare module errors {
@@ -311,8 +317,10 @@ declare function FaunaFunction(name: ExprArg, scope?: ExprArg): Expr
 /** @public */
 export declare type FaunaHttpErrorResponseContent = {
     errors: {
+        position: (string | number)[]
         code: string
         description: string
+        cause?: FaunaHttpErrorResponseContent[];
     }[]
 }
 
@@ -406,79 +414,79 @@ params: ExprArg
 declare function Intersection(...sets: ExprArg[]): Expr
 
 /** @public */
-declare function IsArray(expr: ExprArg): Expr
+declare function IsArray(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsBoolean(expr: ExprArg): Expr
+declare function IsBoolean(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsBytes(expr: ExprArg): Expr
+declare function IsBytes(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsCollection(expr: ExprArg): Expr
+declare function IsCollection(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsCredentials(expr: ExprArg): Expr
+declare function IsCredentials(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsDatabase(expr: ExprArg): Expr
+declare function IsDatabase(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsDate(expr: ExprArg): Expr
+declare function IsDate(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsDoc(expr: ExprArg): Expr
+declare function IsDoc(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsDouble(expr: ExprArg): Expr
+declare function IsDouble(expr: ExprArg | null): Expr
 
 /** @public */
 declare function IsEmpty(collection: ExprArg): Expr
 
 /** @public */
-declare function IsFunction(expr: ExprArg): Expr
+declare function IsFunction(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsIndex(expr: ExprArg): Expr
+declare function IsIndex(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsInteger(expr: ExprArg): Expr
+declare function IsInteger(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsKey(expr: ExprArg): Expr
+declare function IsKey(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsLambda(expr: ExprArg): Expr
+declare function IsLambda(expr: ExprArg | null): Expr
 
 /** @public */
 declare function IsNonEmpty(collection: ExprArg): Expr
 
 /** @public */
-declare function IsNull(expr: ExprArg): Expr
+declare function IsNull(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsNumber(expr: ExprArg): Expr
+declare function IsNumber(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsObject(expr: ExprArg): Expr
+declare function IsObject(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsRef(expr: ExprArg): Expr
+declare function IsRef(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsRole(expr: ExprArg): Expr
+declare function IsRole(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsSet(expr: ExprArg): Expr
+declare function IsSet(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsString(expr: ExprArg): Expr
+declare function IsString(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsTimestamp(expr: ExprArg): Expr
+declare function IsTimestamp(expr: ExprArg | null): Expr
 
 /** @public */
-declare function IsToken(expr: ExprArg): Expr
+declare function IsToken(expr: ExprArg | null): Expr
 
 /** @public */
 declare function Join(source: ExprArg, target: ExprArg | Lambda): Expr
@@ -502,7 +510,7 @@ declare function Lambda_2(var_name: ExprArg, expr: ExprArg): Expr
 declare function Length(expr: ExprArg): Expr
 
 /** @public */
-declare function Let(vars: ExprArg, in_expr: ExprArg): Expr
+declare function Let(vars: ExprArg, in_expr: ExprArg | null): Expr
 
 /** @public */
 declare function Ln(expr: ExprArg): Expr
@@ -549,6 +557,17 @@ object: ExprArg,
 values: ExprArg,
 resolver?: Expr | Lambda
 ): Expr
+
+export declare interface MetricsResponse<T = object> {
+    value: T
+    metrics: {
+        'x-compute-ops': number
+        'x-byte-read-ops': number
+        'x-byte-write-ops': number
+        'x-query-time': number
+        'x-txn-retries': number
+    }
+}
 
 /** @public */
 declare function Min(...args: ExprArg[]): Expr
@@ -835,16 +854,25 @@ export { query }
 /** @public */
 export declare interface QueryOptions
 extends Partial<
-Pick<ClientConfig, 'secret' | 'queryTimeout' | 'observer'>
+Pick<
+ClientConfig,
+'secret' | 'queryTimeout' | 'observer'
+>
 > {
     signal?: AbortSignal
+    traceparent?: string
+    tags?: { [key: string]: string }
 }
 
 /** @public */
 declare function Radians(expr: ExprArg): Expr
 
 /** @public */
-declare function Range_2(set: ExprArg, from: ExprArg, to: ExprArg): Expr
+declare function Range_2(
+set: ExprArg,
+from: ExprArg | null,
+to: ExprArg | null
+): Expr
 
 /** @public */
 declare function Reduce(
@@ -928,7 +956,11 @@ declare function RTrim(expr: ExprArg): Expr
 declare function Second(expr: ExprArg): Expr
 
 /** @public */
-declare function Select(path: ExprArg, from: ExprArg, _default?: ExprArg): Expr
+declare function Select(
+path: ExprArg,
+from: ExprArg,
+_default?: ExprArg | null
+): Expr
 
 /** @public */
 declare function SelectAll(path: ExprArg, from: ExprArg): Expr
@@ -1029,7 +1061,7 @@ declare function ToObject(expr: ExprArg): Expr
 declare function ToSeconds(expr: ExprArg): Expr
 
 /** @public */
-declare function ToString(expr: ExprArg): Expr
+declare function ToString(expr: ExprArg | null): Expr
 
 /** @public */
 declare function ToTime(expr: ExprArg): Expr
@@ -1076,6 +1108,7 @@ export declare module values {
         static readonly KEYS: Ref
         static readonly FUNCTIONS: Ref
         static readonly ACCESS_PROVIDERS: Ref
+        static readonly ROLES: Ref
     }
 
     export class SetRef extends Value {

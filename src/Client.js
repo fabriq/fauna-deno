@@ -3,7 +3,7 @@
 import packageJson from '../package.json'
 import { FaunaHTTPError } from './errors'
 import PageHelper from './PageHelper'
-import { wrap } from './query/common'
+import { arity, wrap } from './query/common'
 import RequestResult from './RequestResult'
 import { Ref } from './values'
 import HttpClient from './_http'
@@ -183,8 +183,6 @@ export default function Client(options) {
     options ? options.http2SessionIdleTime : undefined
   )
 
-  if (options) options.http2SessionIdleTime = http2SessionIdleTime
-
   options = applyDefaults(options, {
     endpoint: null,
     domain: 'db.fauna.com',
@@ -223,7 +221,7 @@ Client.apiVersion = packageJson.apiVersion
  * @return {external:Promise<Object>} FaunaDB response object.
  */
 Client.prototype.query = function(expression, options) {
-  query.arity.between(1, 2, arguments, 'Client.prototype.query')
+  arity.between(1, 2, arguments, 'Client.prototype.query')
   options = Object.assign({}, this._globalQueryOptions, options)
   return this._execute('POST', '', wrap(expression), null, options)
 }
@@ -306,8 +304,8 @@ Client.prototype.close = function(opts) {
  * @return {external:Promise<Object>} {value, metrics} An object containing the FaunaDB response object and the list of query metrics incurred by the request.
  */
 Client.prototype.queryWithMetrics = function(expression, options) {
-  query.arity.between(1, 2, arguments, 'Client.prototype.query')
-  return this._execute('POST', '', query.wrap(expression), null, options, true)
+  arity.between(1, 2, arguments, 'Client.prototype.query')
+  return this._execute('POST', '', wrap(expression), null, options, true)
 }
 
 Client.prototype._execute = function(

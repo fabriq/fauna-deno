@@ -41,7 +41,7 @@ export interface QueryOptions
 export type { ExprArg }
 
 
-interface MetricsResponse<T = object> {
+export interface MetricsResponse<T = object> {
   value: T
   metrics: {
     'x-compute-ops': number

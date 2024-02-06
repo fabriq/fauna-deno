@@ -33,7 +33,6 @@ export default function FetchAdapter(options) {
    * @private
    */
   this._closed = false
-  this._fetch = options.fetch || fetch
   /**
    * A map that tracks ongoing requests to be able to cancel them when
    * the .close method is called.
@@ -166,11 +165,11 @@ FetchAdapter.prototype.execute = function(options) {
     options.signal.addEventListener('abort', onAbort)
   }
 
-  return this._fetch(formatUrl(options.origin, options.path, options.query), {
+  return fetch(formatUrl(options.origin, options.path, options.query), {
     method: options.method,
     headers: options.headers,
     body: options.body,
-    agent: this._keepAliveEnabledAgent,
+    // agent: this._keepAliveEnabledAgent,
     signal: ctrl.signal,
   })
     .then(onResponse)
