@@ -847,7 +847,6 @@ declare namespace query {
         ExprVal,
         ExprArg,
         Lambda as LambdaType,
-        parseJSON
     }
 }
 export { query }
@@ -1160,7 +1159,7 @@ declare function Var(varName: ExprArg): Expr
 declare function Year(expr: ExprArg): Expr
 
 /** @public */
-declare function parseJSON<T>(json: any): T
+export declare function parseJSON<T>(json: any): T
 
 export { }
 
