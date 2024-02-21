@@ -3493,5 +3493,6 @@ export {
   logger,
   query_exports as query,
   setDeprecationHandler,
-  showRequestResult
+  showRequestResult,
+  parseJSON
 };
